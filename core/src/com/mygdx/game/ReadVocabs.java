@@ -25,9 +25,13 @@ public class ReadVocabs {
 			}
 		}
         public Vocab[] getData(){
-                 randomRow();
-                 for(int i=0;i< 20;i++){   
-                      try { 
+                 
+             	 try {
+					resultSet.last();
+					id= resultSet.getInt(1);
+					//random 0-last id-row;
+					randomRow(id);         
+					for(int i=0;i< 20;i++){   
                     	  // random row from vocab table
 						resultSet.absolute(random[i]); 
 						id= resultSet.getInt(1);
@@ -35,10 +39,13 @@ public class ReadVocabs {
 						meaning = resultSet.getString(3);
 						     System.out.println("id: "+id +" "+word+" "+ meaning);
 						vocab[i] = new Vocab(id, word, meaning);
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
+	
                  }
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+        
      			try {
      				ps.close();
 					resultSet.close();	
@@ -46,16 +53,15 @@ public class ReadVocabs {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-    		
                  return vocab;
            } 
          
-         public void randomRow(){
+         public void randomRow(int lastNum){
              int n, index = 0;
              boolean state = false;
              do{
-                  // 20 is number of words
-                   n = (int) (Math.random()*20)+1;
+                  // lastNum is number of words
+                   n = (int) (Math.random()*lastNum)+1;
                    
                    for(int i=0; i<random.length;i++){
                         if(random[i] == n){
