@@ -55,7 +55,7 @@ public class VocabScreen implements Screen {
         animalButton.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-                game.setScreen(new AnimalScreen(game));
+                game.setScreen(new GuessingWordsScreen(game));
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {

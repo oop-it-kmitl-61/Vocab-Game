@@ -7,22 +7,24 @@ public class readVocab {
 		Connection theConn = null;
 		ResultSet resultSet;
 		Statement statement;
+		PreparedStatement ps;
 		String sql, word, meaning;
 		int id;
 		try {
 			DBConnection MyCon = new DBConnection();
 			theConn = MyCon.getConnection();
 			sql = "SELECT * FROM animals";
-			statement = theConn.createStatement();
-			resultSet = statement.executeQuery(sql);
-			while(resultSet.next()) {
+			//Try to make your ResultSet scrollable:
+			ps = theConn.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+			resultSet = ps.executeQuery();
+			resultSet.absolute(10); 
+//			while(resultSet.next()) {
 				id= resultSet.getInt(1);
 				word = resultSet.getString(2);
 				meaning = resultSet.getString(3);
 				System.out.printf("%d %s %s\n", id, word, meaning);
-			}
+//			}
 			resultSet.close();
-			statement.close();
 		}catch (Exception e) {
 			// TODO: handle exception
 			System.out.println(e);
