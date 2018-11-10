@@ -24,7 +24,7 @@ public class TitleScreen implements Screen {
         stage = new Stage(new ScreenViewport());
 
         //background
-        Texture texture = new Texture(Gdx.files.internal("img/cover4.jpg"));
+        Texture texture = new Texture(Gdx.files.internal("img/cover5.jpg"));
         Image image1 = new Image(texture);
         image1.setPosition(0,0);
         image1.setSize(500,500);

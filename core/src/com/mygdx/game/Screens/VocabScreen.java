@@ -31,15 +31,15 @@ public class VocabScreen implements Screen {
 
         TextButton natureAndWeatherButton, animalButton, familyButton, foodAndBeverageButton, backButton;
 
-        natureAndWeatherButton = new TextButton("Nature & Weather", MyMainGame.gameSkin,"small");
+        natureAndWeatherButton = new TextButton("Bodies", MyMainGame.gameSkin,"small");
         natureAndWeatherButton.setSize(200,65);
         natureAndWeatherButton.setPosition(150,370);
 
-        animalButton = new TextButton("Animal", MyMainGame.gameSkin,"small");
+        animalButton = new TextButton("Animals", MyMainGame.gameSkin,"small");
         animalButton.setSize(200,65);
         animalButton.setPosition(150,295);
 
-        familyButton = new TextButton("Family", MyMainGame.gameSkin,"small");
+        familyButton = new TextButton("Careers", MyMainGame.gameSkin,"small");
         familyButton.setSize(200,65);
         familyButton.setPosition(150,220);
 

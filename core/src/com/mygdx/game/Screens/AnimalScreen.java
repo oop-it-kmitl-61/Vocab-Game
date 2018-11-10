@@ -33,7 +33,7 @@ public class AnimalScreen extends ApplicationAdapter implements Screen, InputPro
 
 
         Label.LabelStyle label1Style = new Label.LabelStyle();
-        BitmapFont myFont = new BitmapFont(Gdx.files.local("Font/supermarketFont.fnt"));
+        BitmapFont myFont = new BitmapFont(Gdx.files.local("Font/supermarket.fnt"));
         label1Style.font = myFont;
         label1Style.fontColor = Color.BLACK;
 
@@ -42,7 +42,7 @@ public class AnimalScreen extends ApplicationAdapter implements Screen, InputPro
         label1.setPosition(0,Gdx.graphics.getHeight()-row_height*4);
         label1.setAlignment(Align.center);
 
-        final Label vocab1 = new Label("ตอบ",label1Style);
+        final Label vocab1 = new Label("คำตอบ " ,label1Style);
         vocab1.setSize(Gdx.graphics.getWidth(),row_height);
         vocab1.setPosition(80,175);
 
