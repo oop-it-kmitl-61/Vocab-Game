@@ -14,8 +14,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.game.MyMainGame;
-
+import com.mygdx.game.ReadVocabs;
+import com.mygdx.game.Vocab;
+import com.mygdx.game.readVocab;
+import java.sql.*;
 import javax.swing.JOptionPane;
+
+import java.awt.event.InputMethodListener;
 import java.awt.event.KeyEvent;
 
 
@@ -23,7 +28,7 @@ public class GuessingWordsScreen extends ApplicationAdapter implements Screen, I
     private Stage stage;
     private Game game;
     private ShapeRenderer shapeRenderer;
-    InputMultiplexer inputMultiplexer;
+    private InputMultiplexer inputMultiplexer;
     public GuessingWordsScreen(Game aGame) {
         game = aGame;
         stage = new Stage(new ScreenViewport());
@@ -31,12 +36,13 @@ public class GuessingWordsScreen extends ApplicationAdapter implements Screen, I
         int row_height = Gdx.graphics.getWidth() / 12;
         int col_width = Gdx.graphics.getWidth() / 12;
 
-
         Label.LabelStyle label1Style = new Label.LabelStyle();
         BitmapFont myFont = new BitmapFont(Gdx.files.local("Font/supermarket.fnt"));
         label1Style.font = myFont;
         label1Style.fontColor = Color.BLACK;
+        
 
+        
         Label label1 = new Label("Vocab",label1Style);
         label1.setSize(Gdx.graphics.getWidth(),row_height);
         label1.setPosition(0,Gdx.graphics.getHeight()-row_height*4);
@@ -206,5 +212,8 @@ public class GuessingWordsScreen extends ApplicationAdapter implements Screen, I
     @Override
     public boolean scrolled(int amount) {
         return false;
+    }
+    public static void main(String[] args) {
+
     }
 }

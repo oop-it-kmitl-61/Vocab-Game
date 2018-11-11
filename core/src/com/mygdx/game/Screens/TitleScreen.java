@@ -14,10 +14,7 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.game.MyMainGame;
 
 
-public class TitleScreen implements Screen {
-    private Stage stage;
-    private Game game;
-
+public class TitleScreen extends PrototypeScreen {
 
     public TitleScreen(Game aGame) {
         game = aGame;
@@ -81,43 +78,5 @@ public class TitleScreen implements Screen {
         stage.addActor(startButton);
         stage.addActor(exitButton);
         stage.addActor(optionButton);
-    }
-
-    @Override
-    public void show() {
-        Gdx.input.setInputProcessor(stage);
-    }
-
-    @Override
-    public void render(float delta) {
-        Gdx.gl.glClearColor(1, 1, 1, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        stage.act();
-        stage.draw();
-    }
-
-    @Override
-    public void resize(int width, int height) {
-
-    }
-
-    @Override
-    public void pause() {
-
-    }
-
-    @Override
-    public void resume() {
-
-    }
-
-    @Override
-    public void hide() {
-
-    }
-
-    @Override
-    public void dispose() {
-        stage.dispose();
     }
 }
