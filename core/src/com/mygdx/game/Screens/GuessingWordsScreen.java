@@ -29,26 +29,28 @@ public class GuessingWordsScreen extends ApplicationAdapter implements Screen, I
     private Game game;
     private ShapeRenderer shapeRenderer;
     private InputMultiplexer inputMultiplexer;
+    private int index;
+    private Vocab rightVocab, vocabs[] = ReadVocabs.getData();
     public GuessingWordsScreen(Game aGame) {
         game = aGame;
         stage = new Stage(new ScreenViewport());
         int Help_Guides = 12;
         int row_height = Gdx.graphics.getWidth() / 12;
         int col_width = Gdx.graphics.getWidth() / 12;
-
+        
+        rightVocab = new Vocab();
+        
         Label.LabelStyle label1Style = new Label.LabelStyle();
         BitmapFont myFont = new BitmapFont(Gdx.files.local("Font/supermarket.fnt"));
         label1Style.font = myFont;
         label1Style.fontColor = Color.BLACK;
         
-
-        
-        Label label1 = new Label("Vocab",label1Style);
+        Label label1 = new Label(vocabs[index].getWord(),label1Style);
         label1.setSize(Gdx.graphics.getWidth(),row_height);
         label1.setPosition(0,Gdx.graphics.getHeight()-row_height*4);
         label1.setAlignment(Align.center);
 
-        final Label vocab1 = new Label("คำตอบ " ,label1Style);
+        final Label vocab1 = new Label(vocabs[index].getMeaning(),label1Style);
         vocab1.setSize(Gdx.graphics.getWidth(),row_height);
         vocab1.setPosition(80,175);
 
