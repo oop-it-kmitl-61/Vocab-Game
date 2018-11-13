@@ -36,6 +36,7 @@ public class GuessingWordsScreen extends ApplicationAdapter implements Screen, I
     private Vocab rightVocab, allVocabs[];
     private ArrayList<Vocab> choiceVocabs = new ArrayList<Vocab>(); 
     private ArrayList<Integer> randomNumber = new ArrayList<Integer>();
+    final Label vocab1, vocab2, vocab3, vocab4, label1;
     public GuessingWordsScreen(Game aGame) {
         game = aGame;
         stage = new Stage(new ScreenViewport());
@@ -52,24 +53,24 @@ public class GuessingWordsScreen extends ApplicationAdapter implements Screen, I
         label1Style.fontColor = Color.BLACK;
         
         // words center and make Capitalize
-        final Label label1 = new Label(rightVocab.getWord().substring(0, 1).toUpperCase()+ rightVocab.getWord().substring(1).toLowerCase(), label1Style);
+        label1 = new Label(rightVocab.getWord().substring(0, 1).toUpperCase()+ rightVocab.getWord().substring(1).toLowerCase(), label1Style);
         label1.setSize(Gdx.graphics.getWidth(),row_height);
         label1.setPosition(0,Gdx.graphics.getHeight()-row_height*4);
         label1.setAlignment(Align.center);
 
-        final Label vocab1 = new Label(choiceVocabs.get(randomNumber.get(0)).getMeaning(), label1Style);
+        vocab1 = new Label(choiceVocabs.get(randomNumber.get(0)).getMeaning(), label1Style);
         vocab1.setSize(Gdx.graphics.getWidth(),row_height);
         vocab1.setPosition(70,175);
        
-        final Label vocab2 = new Label(choiceVocabs.get(randomNumber.get(1)).getMeaning(), label1Style);
+        vocab2 = new Label(choiceVocabs.get(randomNumber.get(1)).getMeaning(), label1Style);
         vocab2.setSize(Gdx.graphics.getWidth(),row_height);
         vocab2.setPosition(330,175);
 
-        final Label vocab3 = new Label(choiceVocabs.get(randomNumber.get(2)).getMeaning(), label1Style);
+        vocab3 = new Label(choiceVocabs.get(randomNumber.get(2)).getMeaning(), label1Style);
         vocab3.setSize(Gdx.graphics.getWidth(),row_height);
         vocab3.setPosition(70,80);
 
-        final Label vocab4 = new Label(choiceVocabs.get(randomNumber.get(3)).getMeaning(), label1Style);
+        vocab4 = new Label(choiceVocabs.get(randomNumber.get(3)).getMeaning(), label1Style);
         vocab4.setSize(Gdx.graphics.getWidth(),row_height);
         vocab4.setPosition(330,80);
 
@@ -78,8 +79,7 @@ public class GuessingWordsScreen extends ApplicationAdapter implements Screen, I
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
             	randomChoice();
-            	label1.setText(rightVocab.getWord().substring(0, 1).toUpperCase()+ rightVocab.getWord().substring(1).toLowerCase());
-            	vocab1.setText(choiceVocabs.get(randomNumber.get(0)).getMeaning());
+            	dynamicLabel();
                 
             }
             @Override
@@ -92,8 +92,7 @@ public class GuessingWordsScreen extends ApplicationAdapter implements Screen, I
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
             	randomChoice();
-            	label1.setText(rightVocab.getWord().substring(0, 1).toUpperCase()+ rightVocab.getWord().substring(1).toLowerCase());
-                vocab2.setText(choiceVocabs.get(randomNumber.get(1)).getMeaning());
+            	dynamicLabel();
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
@@ -105,8 +104,7 @@ public class GuessingWordsScreen extends ApplicationAdapter implements Screen, I
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
             	randomChoice();
-            	label1.setText(rightVocab.getWord().substring(0, 1).toUpperCase()+ rightVocab.getWord().substring(1).toLowerCase());
-                vocab3.setText(choiceVocabs.get(randomNumber.get(2)).getMeaning());
+            	dynamicLabel();
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
@@ -118,8 +116,7 @@ public class GuessingWordsScreen extends ApplicationAdapter implements Screen, I
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
             	randomChoice();
-            	label1.setText(rightVocab.getWord().substring(0, 1).toUpperCase()+ rightVocab.getWord().substring(1).toLowerCase());
-                vocab4.setText(choiceVocabs.get(randomNumber.get(3)).getMeaning());
+            	dynamicLabel();
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
@@ -272,19 +269,37 @@ public class GuessingWordsScreen extends ApplicationAdapter implements Screen, I
 
     }
     public void randomChoice() {
+    	//clear before start
+    	choiceVocabs.clear();
+    	randomNumber.clear();
         rightVocab = allVocabs[index];
         choiceVocabs.add(rightVocab);
-        for(int i =1 ;i<=3;i++) {
-        	choiceVocabs.add(allVocabs[(i*index)%19]);
-        }
- 
+        do {
+        	int r = (int) (Math.random()*20);
+        	//prevent add the same word
+        	if(!choiceVocabs.contains(allVocabs[(r)%19])) {
+        		choiceVocabs.add(allVocabs[(r)%19]);        	
+        		System.out.println("choic "+allVocabs[(r)%19]);
+        	}
+        }while(choiceVocabs.size()<4);
+        System.out.println("===============================");
+       System.out.println("riht "+rightVocab);
         do {
         	//random 0-3
         	int n = (int) (Math.random()*4);
         	if(!randomNumber.contains(n)) {
         		randomNumber.add(n);
+        		System.out.println("randomnum "+ n);
         	}
         }while(randomNumber.size()<4);
         index++;
+
+    }
+    public void dynamicLabel() {
+    	label1.setText(rightVocab.getWord().substring(0, 1).toUpperCase()+ rightVocab.getWord().substring(1).toLowerCase());
+        vocab1.setText(choiceVocabs.get(randomNumber.get(0)).getMeaning());
+        vocab2.setText(choiceVocabs.get(randomNumber.get(1)).getMeaning());
+        vocab3.setText(choiceVocabs.get(randomNumber.get(2)).getMeaning());
+        vocab4.setText(choiceVocabs.get(randomNumber.get(3)).getMeaning());
     }
 }
