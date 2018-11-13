@@ -2,15 +2,19 @@ package com.mygdx.game.Screens;
 
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Cursor;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.game.MyMainGame;
@@ -47,8 +51,8 @@ public class GuessingWordsScreen extends ApplicationAdapter implements Screen, I
         allVocabs = ReadVocabs.getData();
         randomChoice();
         
-        Label.LabelStyle label1Style = new Label.LabelStyle();
-        BitmapFont myFont = new BitmapFont(Gdx.files.local("Font/supermarket.fnt"));
+        final Label.LabelStyle label1Style = new Label.LabelStyle();
+        final BitmapFont myFont = new BitmapFont(Gdx.files.local("Font/supermarket.fnt"));
         label1Style.font = myFont;
         label1Style.fontColor = Color.BLACK;
         
@@ -59,20 +63,20 @@ public class GuessingWordsScreen extends ApplicationAdapter implements Screen, I
         label1.setAlignment(Align.center);
 
         vocab1 = new Label(choiceVocabs.get(randomNumber.get(0)).getMeaning(), label1Style);
-        vocab1.setSize(Gdx.graphics.getWidth(),row_height);
-        vocab1.setPosition(70,175);
+        vocab1.setSize(Gdx.graphics.getWidth()/4,row_height*1.2f);
+        vocab1.setPosition(65,175);
        
         vocab2 = new Label(choiceVocabs.get(randomNumber.get(1)).getMeaning(), label1Style);
-        vocab2.setSize(Gdx.graphics.getWidth(),row_height);
-        vocab2.setPosition(330,175);
+        vocab2.setSize(Gdx.graphics.getWidth()/4,row_height*1.2f);
+        vocab2.setPosition(315,175);
 
         vocab3 = new Label(choiceVocabs.get(randomNumber.get(2)).getMeaning(), label1Style);
-        vocab3.setSize(Gdx.graphics.getWidth(),row_height);
-        vocab3.setPosition(70,80);
+        vocab3.setSize(Gdx.graphics.getWidth()/4,row_height*1.2f);
+        vocab3.setPosition(65,80);
 
         vocab4 = new Label(choiceVocabs.get(randomNumber.get(3)).getMeaning(), label1Style);
-        vocab4.setSize(Gdx.graphics.getWidth(),row_height);
-        vocab4.setPosition(330,80);
+        vocab4.setSize(Gdx.graphics.getWidth()/4,row_height*1.2f);
+        vocab4.setPosition(315,80);
 
          //add listener
         vocab1.addListener(new InputListener(){
@@ -87,7 +91,6 @@ public class GuessingWordsScreen extends ApplicationAdapter implements Screen, I
                 return true;
             }
         });
-        
         vocab2.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
@@ -124,6 +127,61 @@ public class GuessingWordsScreen extends ApplicationAdapter implements Screen, I
             }
         });
         
+        
+        
+        //hover
+        vocab1.addListener(new ClickListener() {    
+        	@Override
+        	public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
+        		Label.LabelStyle hoverStyle = new Label.LabelStyle();
+        		hoverStyle.fontColor = Color.valueOf("#00bfff");
+        		hoverStyle.font = myFont;
+        		vocab1.setStyle(hoverStyle);
+        	}
+        	 @Override
+        	public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
+        		 vocab1.setStyle(label1Style);
+        	}
+        });
+        vocab2.addListener(new ClickListener() {    
+        	@Override
+        	public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
+        		Label.LabelStyle hoverStyle = new Label.LabelStyle();
+        		hoverStyle.fontColor = Color.valueOf("#00bfff");
+        		hoverStyle.font = myFont;
+        		vocab2.setStyle(hoverStyle);
+        	}
+        	 @Override
+        	public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
+        		 vocab2.setStyle(label1Style);
+        	}
+        });
+        vocab3.addListener(new ClickListener() {    
+        	@Override
+        	public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
+        		Label.LabelStyle hoverStyle = new Label.LabelStyle();
+        		hoverStyle.fontColor = Color.valueOf("#00bfff");
+        		hoverStyle.font = myFont;
+        		vocab3.setStyle(hoverStyle);
+        	}
+        	 @Override
+        	public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
+        		 vocab3.setStyle(label1Style);
+        	}
+        });
+        vocab4.addListener(new ClickListener() {    
+        	@Override
+        	public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
+        		Label.LabelStyle hoverStyle = new Label.LabelStyle();
+        		hoverStyle.fontColor = Color.valueOf("#00bfff");
+        		hoverStyle.font = myFont;
+        		vocab4.setStyle(hoverStyle);
+        	}
+        	 @Override
+        	public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
+        		 vocab4.setStyle(label1Style);
+        	}
+        });
         stage.addActor(label1);
         stage.addActor(vocab1);
         stage.addActor(vocab2);
