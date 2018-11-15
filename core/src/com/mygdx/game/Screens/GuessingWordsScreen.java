@@ -3,14 +3,19 @@ package com.mygdx.game.Screens;
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.game.CountTime;
@@ -36,23 +41,27 @@ public class GuessingWordsScreen extends ApplicationAdapter implements Screen, I
     private CountTime timeLable;
     private Thread timeThread;
     private static boolean timeOut;
-    
-    public GuessingWordsScreen(Game aGame) {
+    private Skin speakSkin;
+    public GuessingWordsScreen(Game aGame, String tableName) {
         game = aGame;
         stage = new Stage(new ScreenViewport());
         int row_height = Gdx.graphics.getWidth() / 12;
+        int col_width = Gdx.graphics.getWidth() / 12;
+        speakSkin= new Skin(Gdx.files.internal("orange/skin/extras/skin-composer-dark/dark-peel-ui.json"));
         
+        //tell ReadVocab what table should be read and return vocab
+        allVocabs = ReadVocabs.getData(tableName);
         
-        allVocabs = ReadVocabs.getData();
         randomChoice();
+        
         final Label.LabelStyle label1Style = new Label.LabelStyle();
         final BitmapFont myFont = new BitmapFont(Gdx.files.local("Font/supermarket.fnt"));
         label1Style.font = myFont;
         label1Style.fontColor = Color.BLACK;
        
-        falseLabel = new Label("False: "+falseCount+"/5", label1Style);
+        falseLabel = new Label(index+"/20\nFalse: "+falseCount+"/5", label1Style);
         falseLabel.setSize(Gdx.graphics.getWidth()/4,row_height*1.2f);
-        falseLabel.setPosition(2, 450);
+        falseLabel.setPosition(2, 435);
         
         //time lable
         timeLable = new CountTime("", label1Style);
@@ -66,21 +75,28 @@ public class GuessingWordsScreen extends ApplicationAdapter implements Screen, I
         label1.setPosition(0,Gdx.graphics.getHeight()-row_height*4);
         label1.setAlignment(Align.center);
 
+        //speak button
+        ImageButton speakButton = new ImageButton(speakSkin);
+        speakButton.setSize(col_width*1.7f,(float)(row_height*1.5f));
+        speakButton.getStyle().imageUp = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("orange/raw/image-sound.png"))));
+        speakButton.getStyle().imageDown = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("orange/raw/image-sound.png"))));
+        speakButton.setPosition(50,Gdx.graphics.getHeight()-row_height*4.3f);
+        
         vocab1 = new Label(choiceVocabs.get(randomNumber.get(0)).getMeaning(), label1Style);
         vocab1.setSize(Gdx.graphics.getWidth()/4,row_height*1.2f);
-        vocab1.setPosition(60,175);
+        vocab1.setPosition(55,175);
        
         vocab2 = new Label(choiceVocabs.get(randomNumber.get(1)).getMeaning(), label1Style);
         vocab2.setSize(Gdx.graphics.getWidth()/4,row_height*1.2f);
-        vocab2.setPosition(310,175);
+        vocab2.setPosition(305,175);
 
         vocab3 = new Label(choiceVocabs.get(randomNumber.get(2)).getMeaning(), label1Style);
         vocab3.setSize(Gdx.graphics.getWidth()/4,row_height*1.2f);
-        vocab3.setPosition(60,80);
+        vocab3.setPosition(55,80);
 
         vocab4 = new Label(choiceVocabs.get(randomNumber.get(3)).getMeaning(), label1Style);
         vocab4.setSize(Gdx.graphics.getWidth()/4,row_height*1.2f);
-        vocab4.setPosition(310,80);
+        vocab4.setPosition(305,80);
 
          //add listener
         vocab1.addListener(new InputListener(){
@@ -94,12 +110,12 @@ public class GuessingWordsScreen extends ApplicationAdapter implements Screen, I
             		JOptionPane.showMessageDialog(null, "Wrong!!", "Result",JOptionPane.WARNING_MESSAGE);
             		falseCount++;
             		falseAnswer.add(rightVocab);
-            		falseLabel.setText("Fasle: "+falseCount+"/5");
             	}
             	timeLable.setPause(false);
             	timeLable.setTime(30,0);
             	randomChoice();
             	dynamicLabel();
+            	falseLabel.setText(index+"/20\nFalse: "+falseCount+"/5");
                 
             }
             @Override
@@ -119,12 +135,12 @@ public class GuessingWordsScreen extends ApplicationAdapter implements Screen, I
             		JOptionPane.showMessageDialog(null, "Wrong!!", "Result",JOptionPane.WARNING_MESSAGE);
             		falseCount++;
             		falseAnswer.add(rightVocab);
-            		falseLabel.setText("False: "+falseCount+"/5");
             	}
               	timeLable.setPause(false);
               	timeLable.setTime(30,0);
             	randomChoice();
             	dynamicLabel();
+            	falseLabel.setText(index+"/20\nFalse: "+falseCount+"/5");
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
@@ -143,12 +159,12 @@ public class GuessingWordsScreen extends ApplicationAdapter implements Screen, I
             		JOptionPane.showMessageDialog(null, "Wrong!!", "Result",JOptionPane.WARNING_MESSAGE);
             		falseCount++;
             		falseAnswer.add(rightVocab);
-            		falseLabel.setText("False: "+falseCount+"/5");
             	}
             	timeLable.setPause(false);
             	timeLable.setTime(30,0);
             	randomChoice();
             	dynamicLabel();
+            	falseLabel.setText(index+"/20\nFalse: "+falseCount+"/5");
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
@@ -167,19 +183,28 @@ public class GuessingWordsScreen extends ApplicationAdapter implements Screen, I
             		JOptionPane.showMessageDialog(null, "Wrong!!", "Result",JOptionPane.WARNING_MESSAGE);
             		falseCount++;
             		falseAnswer.add(rightVocab);
-            		falseLabel.setText("False: "+falseCount+"/5");
             	}
             	timeLable.setPause(false);
             	timeLable.setTime(30, 0);
             	randomChoice();
             	dynamicLabel();
+            	falseLabel.setText(index+"/20\nFalse: "+falseCount+"/5");
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
                 return true;
             }
         });
-        
+        speakButton.addListener(new InputListener(){
+            @Override
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+//                game.setScreen(new VocabScreen(game));
+            }
+            @Override
+            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+                return true;
+            }
+        });
         
         
         //hover
@@ -235,6 +260,7 @@ public class GuessingWordsScreen extends ApplicationAdapter implements Screen, I
         		 vocab4.setStyle(label1Style);
         	}
         });
+        stage.addActor(speakButton);
         stage.addActor(timeLable);
         stage.addActor(falseLabel);
         stage.addActor(label1);
@@ -319,9 +345,9 @@ public class GuessingWordsScreen extends ApplicationAdapter implements Screen, I
     @Override
     public boolean keyDown(int keycode) {
         if(keycode == Input.Keys.ESCAPE){
-            Object[] options = {"resume", "exit"};
+            Object[] options = {"Resume", "Exit"};
         	timeLable.setPause(true);
-            int n= JOptionPane.showOptionDialog(null, "Would you like to resume or exit","Question", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null, options,options[0]);
+            int n= JOptionPane.showOptionDialog(null, "Would you like to resume or exit ?","Question", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null, options,options[0]);
             if(n==1){
             	timeLable.setEnd(true);
                 game.setScreen(new VocabScreen(game));
@@ -363,10 +389,10 @@ public class GuessingWordsScreen extends ApplicationAdapter implements Screen, I
     		GuessingWordsScreen.timeOut = false;
     		falseCount++;
     		falseAnswer.add(rightVocab);
-    		falseLabel.setText("False: "+falseCount+"/5");
     		timeLable.setTime(30,0);
     		randomChoice();
     		dynamicLabel();
+    		falseLabel.setText(index+"/20\nFalse: "+falseCount+"/5");
     	}
         return false;
     }
@@ -405,8 +431,35 @@ public class GuessingWordsScreen extends ApplicationAdapter implements Screen, I
         index++;
         System.out.println("falw "+falseCount);
         if(index==20|| falseCount==5) {
+        	if(index ==20 && falseCount==0) {
+        		timeLable.setPause(true);
+        		JOptionPane.showMessageDialog(null, "            You win!!", "Result",  JOptionPane.INFORMATION_MESSAGE);
+        	}else if(falseCount !=0 && falseCount!=5) {
+        		String text = "";
+    	        for(int i=0;i<falseAnswer.size();i++) {
+    	        	if(i==falseAnswer.size()-1) {
+    	        		text += falseAnswer.get(i).getWord()+"    "+ falseAnswer.get(i).getMeaning();
+    	        	}else {
+    	        		text += falseAnswer.get(i).getWord()+"    "+ falseAnswer.get(i).getMeaning()+"\n";
+    	        	}
+    	        }
+    	        timeLable.setPause(true);
+        		JOptionPane.showMessageDialog(null, "            You Win!!\n"+text, "Result", JOptionPane.WARNING_MESSAGE);
+        	}
+        	else {
+        		String text = "";
+    	        for(int i=0;i<falseAnswer.size();i++) {
+    	        	if(i==falseAnswer.size()-1) {
+    	        		text += falseAnswer.get(i).getWord()+"    "+ falseAnswer.get(i).getMeaning();
+    	        	}else {
+    	        		text += falseAnswer.get(i).getWord()+"    "+ falseAnswer.get(i).getMeaning()+"\n";
+    	        	}
+    	        }
+    	        timeLable.setPause(true);
+        		JOptionPane.showMessageDialog(null, "            You fail!!\n"+text, "Result", JOptionPane.WARNING_MESSAGE);
+        	}
         	timeLable.setEnd(true);
-        	game.setScreen(new ConcludeScreen(game, falseAnswer));
+        	game.setScreen(new VocabScreen(game));
         }
 
     }

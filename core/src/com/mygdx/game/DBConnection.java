@@ -10,7 +10,7 @@ public class DBConnection {
 			c = DriverManager.getConnection(url);
 			
 		}catch (Exception e) {
-			System.out.println(e);
+			e.printStackTrace();
 		}
 		return c;
 	}

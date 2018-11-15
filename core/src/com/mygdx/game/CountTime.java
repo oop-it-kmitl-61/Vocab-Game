@@ -15,13 +15,12 @@ public class CountTime extends Label implements Runnable{
 
 	@Override
 	public void run() {
-		long i = 0;
+		int i = 0;
 		while(true) {
 			if(end)
 				break;
 			else if(pause) {
 				try {
-					System.out.println("sleep");
 					Thread.sleep(1);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
@@ -42,9 +41,8 @@ public class CountTime extends Label implements Runnable{
 					}else {
 						mill=9;
 					}		
-					output = String.format("%02d:%d",second, mill);
+					output = String.format("%02d:%d",second, mill);//30:00
 					setText(output);
-					System.out.println(output); //30:00
 					
 					try {
 						Thread.sleep(100);
@@ -54,6 +52,9 @@ public class CountTime extends Label implements Runnable{
 				}
 			}
 			i++;
+			if(i>=60) {
+				i=0;
+			}
 		}
 	}
 	public void setPause(boolean pause) {

@@ -8,9 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.game.MyMainGame;
 
@@ -29,19 +27,19 @@ public class VocabScreen implements Screen {
         image1.setSize(500,500);
         stage.addActor(image1);
 
-        TextButton natureAndWeatherButton, animalButton, familyButton, foodAndBeverageButton, backButton;
+        TextButton bodyButton, animalButton, careerButton, foodAndBeverageButton, backButton;
 
-        natureAndWeatherButton = new TextButton("Bodies", MyMainGame.gameSkin,"small");
-        natureAndWeatherButton.setSize(200,65);
-        natureAndWeatherButton.setPosition(150,370);
+        bodyButton = new TextButton("Bodies", MyMainGame.gameSkin,"small");
+        bodyButton.setSize(200,65);
+        bodyButton.setPosition(150,370);
 
         animalButton = new TextButton("Animals", MyMainGame.gameSkin,"small");
         animalButton.setSize(200,65);
         animalButton.setPosition(150,295);
 
-        familyButton = new TextButton("Careers", MyMainGame.gameSkin,"small");
-        familyButton.setSize(200,65);
-        familyButton.setPosition(150,220);
+        careerButton = new TextButton("Careers", MyMainGame.gameSkin,"small");
+        careerButton.setSize(200,65);
+        careerButton.setPosition(150,220);
 
         foodAndBeverageButton = new TextButton("Food & Beverage", MyMainGame.gameSkin,"small");
         foodAndBeverageButton.setSize(200,65);
@@ -52,16 +50,50 @@ public class VocabScreen implements Screen {
         backButton.setSize(200,65);
         backButton.setPosition(150,70);
 
-        animalButton.addListener(new InputListener(){
+        
+        bodyButton.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-                game.setScreen(new GuessingWordsScreen(game));
+                game.setScreen(new GuessingWordsScreen(game, "bodies"));
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
                 return true;
             }
         });
+        animalButton.addListener(new InputListener(){
+            @Override
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+                game.setScreen(new GuessingWordsScreen(game, "animals"));
+            }
+            @Override
+            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+                return true;
+            }
+        });
+        
+        careerButton.addListener(new InputListener(){
+            @Override
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+                game.setScreen(new GuessingWordsScreen(game, "careers"));
+            }
+            @Override
+            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+                return true;
+            }
+        });
+        
+        foodAndBeverageButton.addListener(new InputListener(){
+            @Override
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+                game.setScreen(new GuessingWordsScreen(game, "foods"));
+            }
+            @Override
+            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+                return true;
+            }
+        });
+        
         backButton.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
@@ -72,9 +104,9 @@ public class VocabScreen implements Screen {
                 return true;
             }
         });
-        stage.addActor(natureAndWeatherButton);
+        stage.addActor(bodyButton);
         stage.addActor(animalButton);
-        stage.addActor(familyButton);
+        stage.addActor(careerButton);
         stage.addActor(foodAndBeverageButton);
         stage.addActor(backButton);
     }
