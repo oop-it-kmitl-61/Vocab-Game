@@ -9,11 +9,10 @@ import com.mygdx.game.Screens.TitleScreen;
 public class MyMainGame extends Game {
 
     static public Skin gameSkin;
-
     public void create () {
         gameSkin = new Skin(Gdx.files.internal("glassy/skin/glassy-ui.json"));
         this.setScreen(new TitleScreen(this));
-//        BitmapFont myFont = new BitmapFont(Gdx.files.internal("Font/supermarketFont.fnt"));
+
     }
 
     public void render () {
