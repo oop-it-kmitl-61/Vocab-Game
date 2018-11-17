@@ -20,10 +20,10 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.game.CountTime;
 import com.mygdx.game.ReadVocabs;
+import com.mygdx.game.TextToSpeech;
 import com.mygdx.game.Vocab;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-
 
 
 public class GuessingWordsScreen extends ApplicationAdapter implements Screen, InputProcessor{
@@ -39,9 +39,10 @@ public class GuessingWordsScreen extends ApplicationAdapter implements Screen, I
     private ArrayList<Vocab> falseAnswer = new ArrayList<Vocab>();
     private int falseCount;
     private CountTime timeLable;
-    private Thread timeThread;
+    private Thread timeThread, textToSpeechThread;
     private static boolean timeOut;
     private Skin speakSkin;
+    private TextToSpeech textToSpeech;
     public GuessingWordsScreen(Game aGame, String tableName) {
         game = aGame;
         stage = new Stage(new ScreenViewport());
@@ -51,6 +52,8 @@ public class GuessingWordsScreen extends ApplicationAdapter implements Screen, I
         
         //tell ReadVocab what table should be read and return vocab
         allVocabs = ReadVocabs.getData(tableName);
+        
+        textToSpeech = new TextToSpeech();
         
         randomChoice();
         
@@ -67,8 +70,14 @@ public class GuessingWordsScreen extends ApplicationAdapter implements Screen, I
         timeLable = new CountTime("", label1Style);
         timeLable.setSize(Gdx.graphics.getWidth()/4,row_height*1.2f);
         timeLable.setPosition(420, 450);
-        timeThread = new Thread(timeLable);
+        
+        //time thread
+        timeThread = new Thread(timeLable); 
         timeThread.start();
+        //speak thread
+        textToSpeechThread = new Thread(textToSpeech);
+        textToSpeechThread.start();
+        
         // words center and make Capitalize
         label1 = new Label(rightVocab.getWord().substring(0, 1).toUpperCase()+ rightVocab.getWord().substring(1).toLowerCase(), label1Style);
         label1.setSize(Gdx.graphics.getWidth(),row_height);
@@ -195,10 +204,12 @@ public class GuessingWordsScreen extends ApplicationAdapter implements Screen, I
                 return true;
             }
         });
+        
+        //text to speech
         speakButton.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-//                game.setScreen(new VocabScreen(game));
+            	textToSpeech.SpeakText(rightVocab.getWord());
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
@@ -350,6 +361,7 @@ public class GuessingWordsScreen extends ApplicationAdapter implements Screen, I
             int n= JOptionPane.showOptionDialog(null, "Would you like to resume or exit ?","Question", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null, options,options[0]);
             if(n==1){
             	timeLable.setEnd(true);
+            	textToSpeech.setEnd(true);
                 game.setScreen(new VocabScreen(game));
 
             }
@@ -401,9 +413,6 @@ public class GuessingWordsScreen extends ApplicationAdapter implements Screen, I
     public boolean scrolled(int amount) {
         return false;
     }
-    public static void main(String[] args) {
-
-    }
     public void randomChoice() {
     	//clear before start
     	choiceVocabs.clear();
@@ -413,23 +422,19 @@ public class GuessingWordsScreen extends ApplicationAdapter implements Screen, I
         do {
         	int r = (int) (Math.random()*20);
         	//prevent add the same word
-        	if(!choiceVocabs.contains(allVocabs[(r)%19])) {
+        	if(!choiceVocabs.contains(allVocabs[(r)])) {
         		choiceVocabs.add(allVocabs[(r)%19]);        	
-        		System.out.println("choic "+allVocabs[(r)%19]);
         	}
         }while(choiceVocabs.size()<4);
-        System.out.println("===============================");
-       System.out.println("riht "+rightVocab);
         do {
         	//random 0-3
         	int n = (int) (Math.random()*4);
         	if(!randomNumber.contains(n)) {
         		randomNumber.add(n);
-        		System.out.println("randomnum "+ n);
         	}
         }while(randomNumber.size()<4);
         index++;
-        System.out.println("falw "+falseCount);
+
         if(index==20|| falseCount==5) {
         	if(index ==20 && falseCount==0) {
         		timeLable.setPause(true);
@@ -459,6 +464,7 @@ public class GuessingWordsScreen extends ApplicationAdapter implements Screen, I
         		JOptionPane.showMessageDialog(null, "            You fail!!\n"+text, "Result", JOptionPane.WARNING_MESSAGE);
         	}
         	timeLable.setEnd(true);
+        	textToSpeech.setEnd(true);
         	game.setScreen(new VocabScreen(game));
         }
 
@@ -473,4 +479,5 @@ public class GuessingWordsScreen extends ApplicationAdapter implements Screen, I
 	public static void setTimeOut(boolean t) {
 		timeOut = t;
 	}
+
 }

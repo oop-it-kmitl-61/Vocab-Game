@@ -2,16 +2,20 @@ package com.mygdx.game.Screens;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
-public abstract class PrototypeScreen implements Screen{
+public abstract class PrototypeScreen implements Screen, InputProcessor{
     protected Stage stage;
     protected Game game;
+    protected InputMultiplexer inputMultiplexer;
 	@Override
 	public void show() {
-		Gdx.input.setInputProcessor(stage);
+		inputMultiplexer = new InputMultiplexer(stage, this);
+        Gdx.input.setInputProcessor(inputMultiplexer);
 		
 	}
 	@Override
@@ -46,5 +50,44 @@ public abstract class PrototypeScreen implements Screen{
 	public void dispose() {
 		 stage.dispose();
 		
+	}
+    @Override
+    public boolean keyDown(int keycode) {
+        return false;
+    }
+
+    @Override
+    public boolean keyUp(int keycode) {
+        return false;
+    }
+	@Override
+	public boolean keyTyped(char character) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public boolean touchDragged(int screenX, int screenY, int pointer) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public boolean mouseMoved(int screenX, int screenY) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public boolean scrolled(int amount) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

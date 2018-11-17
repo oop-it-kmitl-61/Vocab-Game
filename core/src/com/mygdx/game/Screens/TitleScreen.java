@@ -1,7 +1,10 @@
 package com.mygdx.game.Screens;
 
+import javax.swing.JOptionPane;
+
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -26,19 +29,15 @@ public class TitleScreen extends PrototypeScreen {
         stage.addActor(image1);
 
         //created button
-        TextButton startButton, exitButton, optionButton;
+        TextButton startButton, exitButton;
 
-        startButton = new TextButton("START", MyMainGame.gameSkin,"small");
-        startButton.setSize(150,80);
-        startButton.setPosition(170,350);
+        startButton = new TextButton("START", MyMainGame.gameSkin);
+        startButton.setSize(200,100);
+        startButton.setPosition(150,270);
 
-        optionButton = new TextButton("CREDIT", MyMainGame.gameSkin,"small");
-        optionButton.setSize(150,80);
-        optionButton.setPosition(170,250);
-
-        exitButton = new TextButton("EXIT", MyMainGame.gameSkin,"small");
-        exitButton.setSize(150,80);
-        exitButton.setPosition(170,150);
+        exitButton = new TextButton("EXIT", MyMainGame.gameSkin);
+        exitButton.setSize(200,100);
+        exitButton.setPosition(150,140);
 
         //add listener
         startButton.addListener(new InputListener(){
@@ -52,16 +51,6 @@ public class TitleScreen extends PrototypeScreen {
             }
         });
 
-        optionButton.addListener(new InputListener(){
-            @Override
-            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-                game.setScreen(new OptionScreen(game));
-            }
-            @Override
-            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-                return true;
-            }
-        });
         exitButton.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
@@ -75,6 +64,23 @@ public class TitleScreen extends PrototypeScreen {
 
         stage.addActor(startButton);
         stage.addActor(exitButton);
-        stage.addActor(optionButton);
     }
+
+	@Override
+	public boolean keyDown(int keycode) {
+		 if(keycode == Input.Keys.ESCAPE){
+			 Object[] options = {"Yes", "No"};
+	            int n= JOptionPane.showOptionDialog(null, "Would you like to exit ?","Question", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null, options,options[0]);
+	            if(n==0){
+	            	Gdx.app.exit();
+	            }
+		 }
+		return super.keyDown(keycode);
+	}
+
+	@Override
+	public boolean keyUp(int keycode) {
+		// TODO Auto-generated method stub
+		return super.keyUp(keycode);
+	}
 }
