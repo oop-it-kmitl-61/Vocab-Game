@@ -210,6 +210,7 @@ public class GuessingWordsScreen extends ApplicationAdapter implements Screen, I
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
             	textToSpeech.SpeakText(rightVocab.getWord());
+            	System.out.println("speak ");
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
@@ -422,19 +423,23 @@ public class GuessingWordsScreen extends ApplicationAdapter implements Screen, I
         do {
         	int r = (int) (Math.random()*20);
         	//prevent add the same word
-        	if(!choiceVocabs.contains(allVocabs[(r)])) {
+        	if(!choiceVocabs.contains(allVocabs[(r)%19])) {
         		choiceVocabs.add(allVocabs[(r)%19]);        	
+        		System.out.println("choic "+allVocabs[(r)%19]);
         	}
         }while(choiceVocabs.size()<4);
+        System.out.println("===============================");
+       System.out.println("riht "+rightVocab);
         do {
         	//random 0-3
         	int n = (int) (Math.random()*4);
         	if(!randomNumber.contains(n)) {
         		randomNumber.add(n);
+        		System.out.println("randomnum "+ n);
         	}
         }while(randomNumber.size()<4);
         index++;
-
+        System.out.println("falw "+falseCount);
         if(index==20|| falseCount==5) {
         	if(index ==20 && falseCount==0) {
         		timeLable.setPause(true);
