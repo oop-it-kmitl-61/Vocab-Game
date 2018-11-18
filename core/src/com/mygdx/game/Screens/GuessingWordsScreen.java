@@ -210,7 +210,6 @@ public class GuessingWordsScreen extends ApplicationAdapter implements Screen, I
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
             	textToSpeech.SpeakText(rightVocab.getWord());
-            	System.out.println("speak ");
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
@@ -439,7 +438,6 @@ public class GuessingWordsScreen extends ApplicationAdapter implements Screen, I
         	}
         }while(randomNumber.size()<4);
         index++;
-        System.out.println("falw "+falseCount);
         if(index==20|| falseCount==5) {
         	if(index ==20 && falseCount==0) {
         		timeLable.setPause(true);
