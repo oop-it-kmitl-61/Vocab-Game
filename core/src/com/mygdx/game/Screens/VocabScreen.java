@@ -1,6 +1,7 @@
 package com.mygdx.game.Screens;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -26,46 +27,46 @@ public class VocabScreen extends PrototypeScreen {
         TextButton bodyButton, animalButton, careerButton, foodAndBeverageButton, clothesButton,
         dailyButton, placeButton, sportButton, thingButton, toeicButton;
 
-        bodyButton = new TextButton("Body", MyMainGame.gameSkin,"small");
-        bodyButton.setSize(150,65);
-        bodyButton.setPosition(90,370);
+        bodyButton = new TextButton("Body", MyMainGame.gameSkin);
+        bodyButton.setSize(240,70);
+        bodyButton.setPosition(0,370);
 
-        animalButton = new TextButton("Animal", MyMainGame.gameSkin,"small");
-        animalButton.setSize(150,65);
-        animalButton.setPosition(90,295);
+        animalButton = new TextButton("Animal", MyMainGame.gameSkin);
+        animalButton.setSize(240,70);
+        animalButton.setPosition(0,295);
 
-        careerButton = new TextButton("Career", MyMainGame.gameSkin,"small");
-        careerButton.setSize(150,65);
-        careerButton.setPosition(90,220);
+        careerButton = new TextButton("Career", MyMainGame.gameSkin);
+        careerButton.setSize(240,70);
+        careerButton.setPosition(0,220);
 
-        foodAndBeverageButton = new TextButton("Food", MyMainGame.gameSkin,"small");
-        foodAndBeverageButton.setSize(150,65);
-        foodAndBeverageButton.setPosition(90,145);
+        foodAndBeverageButton = new TextButton("Food", MyMainGame.gameSkin);
+        foodAndBeverageButton.setSize(240,70);
+        foodAndBeverageButton.setPosition(0,145);
 
 
-        clothesButton = new TextButton("Clothes", MyMainGame.gameSkin,"small");
-        clothesButton.setSize(150,65);
-        clothesButton.setPosition(90,70);
+        clothesButton = new TextButton("Clothes", MyMainGame.gameSkin);
+        clothesButton.setSize(240,70);
+        clothesButton.setPosition(0,70);
         
-        dailyButton = new TextButton("Routine", MyMainGame.gameSkin,"small");
-        dailyButton.setSize(150,65);
-        dailyButton.setPosition(280,370);
+        dailyButton = new TextButton("Routine", MyMainGame.gameSkin);
+        dailyButton.setSize(240,70);
+        dailyButton.setPosition(240,370);
         
-        placeButton = new TextButton("Place", MyMainGame.gameSkin,"small");
-        placeButton.setSize(150,65);
-        placeButton.setPosition(280,295);
+        placeButton = new TextButton("Place", MyMainGame.gameSkin);
+        placeButton.setSize(240,70);
+        placeButton.setPosition(240,295);
         
-        sportButton = new TextButton("Sport", MyMainGame.gameSkin,"small");
-        sportButton.setSize(150,65);
-        sportButton.setPosition(280,220);
+        sportButton = new TextButton("Sport", MyMainGame.gameSkin);
+        sportButton.setSize(240,70);
+        sportButton.setPosition(240,220);
         
-        thingButton = new TextButton("Thing", MyMainGame.gameSkin,"small");
-        thingButton.setSize(150,65);
-        thingButton.setPosition(280,145);
+        thingButton = new TextButton("Thing", MyMainGame.gameSkin);
+        thingButton.setSize(240,70);
+        thingButton.setPosition(240,145);
 
-        toeicButton = new TextButton("TOEIC", MyMainGame.gameSkin,"small");
-        toeicButton.setSize(150,65);
-        toeicButton.setPosition(280,70);
+        toeicButton = new TextButton("TOEIC", MyMainGame.gameSkin);
+        toeicButton.setSize(240,70);
+        toeicButton.setPosition(240,70);
         
         bodyButton.addListener(new InputListener(){
             @Override
@@ -185,8 +186,10 @@ public class VocabScreen extends PrototypeScreen {
 
 	@Override
 	public boolean keyDown(int keycode) {
-		game.setScreen(new TitleScreen(game));
-		return super.keyDown(keycode);
+		 if(keycode == Input.Keys.ESCAPE){
+			 game.setScreen(new TitleScreen(game));	
+		 }
+		 return super.keyDown(keycode);
 	}
 
 	@Override

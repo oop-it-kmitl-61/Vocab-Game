@@ -15,7 +15,6 @@ public class CountTime extends Label implements Runnable{
 
 	@Override
 	public void run() {
-		int i = 0;
 		while(true) {
 			if(end)
 				break;
@@ -27,7 +26,6 @@ public class CountTime extends Label implements Runnable{
 					e.printStackTrace();
 				}
 			}else {
-				if(i%60==0) {
 					if(mill==0) {
 						if(second>0)
 							second--;
@@ -48,12 +46,7 @@ public class CountTime extends Label implements Runnable{
 						Thread.sleep(100);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
-					}
-				}
-			}
-			i++;
-			if(i>=60) {
-				i=0;
+					}				
 			}
 		}
 	}

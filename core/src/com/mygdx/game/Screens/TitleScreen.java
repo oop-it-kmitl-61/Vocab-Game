@@ -32,12 +32,12 @@ public class TitleScreen extends PrototypeScreen {
         TextButton startButton, exitButton;
 
         startButton = new TextButton("START", MyMainGame.gameSkin);
-        startButton.setSize(200,100);
-        startButton.setPosition(150,270);
+        startButton.setSize(250,100);
+        startButton.setPosition(120,270);
 
         exitButton = new TextButton("EXIT", MyMainGame.gameSkin);
-        exitButton.setSize(200,100);
-        exitButton.setPosition(150,140);
+        exitButton.setSize(250,100);
+        exitButton.setPosition(120,140);
 
         //add listener
         startButton.addListener(new InputListener(){

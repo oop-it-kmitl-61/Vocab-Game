@@ -9,7 +9,7 @@ public class MyMainGame extends Game {
 
     static public Skin gameSkin;
     public void create () {
-        gameSkin = new Skin(Gdx.files.internal("glassy/skin/glassy-ui.json"));
+        gameSkin = new Skin(Gdx.files.internal("rainbow/skin/rainbow-ui.json"));
         this.setScreen(new TitleScreen(this));
 
     }

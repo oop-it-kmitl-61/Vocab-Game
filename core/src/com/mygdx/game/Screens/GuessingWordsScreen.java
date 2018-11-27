@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 
-public class GuessingWordsScreen extends ApplicationAdapter implements Screen, InputProcessor{
+public class GuessingWordsScreen implements Screen, InputProcessor{
     private Stage stage;
     private Game game;
     private ShapeRenderer shapeRenderer;
@@ -279,9 +279,7 @@ public class GuessingWordsScreen extends ApplicationAdapter implements Screen, I
         stage.addActor(vocab2);
         stage.addActor(vocab3);
         stage.addActor(vocab4);
-        stage.addListener(new ClickListener() {
-        	
-        });
+
         shapeRenderer = new ShapeRenderer();
 
 
@@ -413,7 +411,10 @@ public class GuessingWordsScreen extends ApplicationAdapter implements Screen, I
     public boolean scrolled(int amount) {
         return false;
     }
-    public void randomChoice() {
+    
+   
+	
+	public void randomChoice() {
     	//clear before start
     	choiceVocabs.clear();
     	randomNumber.clear();

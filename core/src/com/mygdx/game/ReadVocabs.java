@@ -62,7 +62,6 @@ public class ReadVocabs {
 	                 return vocab;
                  }
               else {
-                	 System.out.println("can not get Data");
                 	 return null;
                  }
            } 
