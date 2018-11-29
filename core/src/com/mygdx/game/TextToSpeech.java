@@ -37,7 +37,6 @@ public class TextToSpeech implements Runnable{
 	@Override
 	public void run() {
 		// i used for give some job for thread to do that all not thing special
-		int i=0;
 		for(;;) {
 			if(end) {
 				break;
@@ -45,9 +44,10 @@ public class TextToSpeech implements Runnable{
 			if(callSpeak) {
 				voice.speak(word);
 				callSpeak = false;
-			}i++;
-			if(i==100)
-				i=0;
+			}
+			else {
+				Thread.yield();
+			}
 		}
 		
 	}

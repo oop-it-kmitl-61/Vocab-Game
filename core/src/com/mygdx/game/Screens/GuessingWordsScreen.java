@@ -111,6 +111,7 @@ public class GuessingWordsScreen implements Screen, InputProcessor{
         vocab1.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+            	
             	//check answer
             	timeLable.setPause(true);
             	if(choiceVocabs.get(randomNumber.get(0)).getWord().equals(rightVocab.getWord())) {
@@ -120,11 +121,16 @@ public class GuessingWordsScreen implements Screen, InputProcessor{
             		falseCount++;
             		falseAnswer.add(rightVocab);
             	}
+            	falseLabel.setText(index+"/20\nFalse: "+falseCount+"/5");
+            	isGameOver();
             	timeLable.setPause(false);
             	timeLable.setTime(30,0);
-            	randomChoice();
-            	dynamicLabel();
-            	falseLabel.setText(index+"/20\nFalse: "+falseCount+"/5");
+            	if(index <20) {
+            		randomChoice();
+            		dynamicLabel();
+            	}
+            	
+            	
                 
             }
             @Override
@@ -135,6 +141,7 @@ public class GuessingWordsScreen implements Screen, InputProcessor{
         vocab2.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+            	
             	//pause time
             	timeLable.setPause(true);
             	//check answer
@@ -145,11 +152,16 @@ public class GuessingWordsScreen implements Screen, InputProcessor{
             		falseCount++;
             		falseAnswer.add(rightVocab);
             	}
+              	falseLabel.setText(index+"/20\nFalse: "+falseCount+"/5");
+              	isGameOver();
               	timeLable.setPause(false);
               	timeLable.setTime(30,0);
-            	randomChoice();
-            	dynamicLabel();
-            	falseLabel.setText(index+"/20\nFalse: "+falseCount+"/5");
+            	if(index <20) {
+            		randomChoice();
+            		dynamicLabel();
+            	}
+            	
+            	
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
@@ -160,6 +172,7 @@ public class GuessingWordsScreen implements Screen, InputProcessor{
         vocab3.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+            	
             	timeLable.setPause(true);
             	//check answer
             	if(choiceVocabs.get(randomNumber.get(2)).getWord().equals(rightVocab.getWord())) {
@@ -169,11 +182,16 @@ public class GuessingWordsScreen implements Screen, InputProcessor{
             		falseCount++;
             		falseAnswer.add(rightVocab);
             	}
+            	falseLabel.setText(index+"/20\nFalse: "+falseCount+"/5");
+            	isGameOver();
             	timeLable.setPause(false);
             	timeLable.setTime(30,0);
-            	randomChoice();
-            	dynamicLabel();
-            	falseLabel.setText(index+"/20\nFalse: "+falseCount+"/5");
+            	if(index <20) {
+            		randomChoice();
+            		dynamicLabel();
+            	}
+            	
+            	
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
@@ -184,6 +202,7 @@ public class GuessingWordsScreen implements Screen, InputProcessor{
         vocab4.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+            	
             	timeLable.setPause(true);
             	//check answer
             	if(choiceVocabs.get(randomNumber.get(3)).getWord().equals(rightVocab.getWord())) {
@@ -193,11 +212,15 @@ public class GuessingWordsScreen implements Screen, InputProcessor{
             		falseCount++;
             		falseAnswer.add(rightVocab);
             	}
+            	isGameOver();
             	timeLable.setPause(false);
             	timeLable.setTime(30, 0);
-            	randomChoice();
-            	dynamicLabel();
+            	if(index <20) {
+            		randomChoice();
+            		dynamicLabel();
+            	}
             	falseLabel.setText(index+"/20\nFalse: "+falseCount+"/5");
+            	
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
@@ -400,9 +423,13 @@ public class GuessingWordsScreen implements Screen, InputProcessor{
     		falseCount++;
     		falseAnswer.add(rightVocab);
     		timeLable.setTime(30,0);
-    		randomChoice();
-    		dynamicLabel();
     		falseLabel.setText(index+"/20\nFalse: "+falseCount+"/5");
+    		isGameOver();
+        	if(index <20) {
+        		randomChoice();
+        		dynamicLabel();
+        	}
+    		
     	}
         return false;
     }
@@ -423,9 +450,9 @@ public class GuessingWordsScreen implements Screen, InputProcessor{
         do {
         	int r = (int) (Math.random()*20);
         	//prevent add the same word
-        	if(!choiceVocabs.contains(allVocabs[(r)%19])) {
-        		choiceVocabs.add(allVocabs[(r)%19]);        	
-        		System.out.println("choic "+allVocabs[(r)%19]);
+        	if(!choiceVocabs.contains(allVocabs[(r)])) {
+        		choiceVocabs.add(allVocabs[(r)]);        	
+        		System.out.println("choic "+allVocabs[(r)]);
         	}
         }while(choiceVocabs.size()<4);
         System.out.println("===============================");
@@ -439,6 +466,18 @@ public class GuessingWordsScreen implements Screen, InputProcessor{
         	}
         }while(randomNumber.size()<4);
         index++;
+    }
+    public void dynamicLabel() {
+    	label1.setText(rightVocab.getWord().substring(0, 1).toUpperCase()+ rightVocab.getWord().substring(1).toLowerCase());
+        vocab1.setText(choiceVocabs.get(randomNumber.get(0)).getMeaning());
+        vocab2.setText(choiceVocabs.get(randomNumber.get(1)).getMeaning());
+        vocab3.setText(choiceVocabs.get(randomNumber.get(2)).getMeaning());
+        vocab4.setText(choiceVocabs.get(randomNumber.get(3)).getMeaning());
+    }
+	public static void setTimeOut(boolean t) {
+		timeOut = t;
+	}
+	public void isGameOver() {
         if(index==20|| falseCount==5) {
         	if(index ==20 && falseCount==0) {
         		timeLable.setPause(true);
@@ -471,17 +510,6 @@ public class GuessingWordsScreen implements Screen, InputProcessor{
         	textToSpeech.setEnd(true);
         	game.setScreen(new VocabScreen(game));
         }
-
-    }
-    public void dynamicLabel() {
-    	label1.setText(rightVocab.getWord().substring(0, 1).toUpperCase()+ rightVocab.getWord().substring(1).toLowerCase());
-        vocab1.setText(choiceVocabs.get(randomNumber.get(0)).getMeaning());
-        vocab2.setText(choiceVocabs.get(randomNumber.get(1)).getMeaning());
-        vocab3.setText(choiceVocabs.get(randomNumber.get(2)).getMeaning());
-        vocab4.setText(choiceVocabs.get(randomNumber.get(3)).getMeaning());
-    }
-	public static void setTimeOut(boolean t) {
-		timeOut = t;
 	}
 
 }
