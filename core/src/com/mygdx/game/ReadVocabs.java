@@ -78,6 +78,28 @@ public class ReadVocabs {
                    }
              }while(random.size() < OptionScreen.getWordnum());
          }
+         
+         public static void updateBestScore(String table,int score) {
+        	DBConnection MyCon = new DBConnection();
+ 			theConn = MyCon.getConnection();
+ 			String sql = "UPDATE score SET "+table+"=?";
+ 			
+ 			//Try to make your ResultSet scrollable:
+ 			PreparedStatement ps;
+			try {
+				ps = theConn.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+				ps.setInt(1, score);
+				ps.executeUpdate();
+				
+				ps.close();
+				theConn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+ 			
+         }
 //	public static void main(String[] args) {
 //       for(Vocab vocab: ReadVocabs.getData("bodies")) {
 //    	   System.out.println(vocab);

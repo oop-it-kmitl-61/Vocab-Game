@@ -33,7 +33,7 @@ public class GuessingWordsScreen implements Screen, InputProcessor{
     private Game game;
     private ShapeRenderer shapeRenderer;
     private InputMultiplexer inputMultiplexer;
-    private int index;
+    private int index, score;
     private Vocab rightVocab, allVocabs[];
     private ArrayList<Vocab> choiceVocabs = new ArrayList<Vocab>(); 
     private ArrayList<Integer> randomNumber = new ArrayList<Integer>();

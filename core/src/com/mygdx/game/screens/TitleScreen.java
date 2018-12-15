@@ -13,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.game.MyMainGame;
+import com.mygdx.game.SoundTrack;
 
 
 public class TitleScreen extends PrototypeScreen {
@@ -20,7 +21,7 @@ public class TitleScreen extends PrototypeScreen {
     public TitleScreen(Game aGame) {
         game = aGame;
         stage = new Stage(new ScreenViewport());
-
+        
         //background
         Texture texture = new Texture(Gdx.files.internal("img/cover5.jpg"));
         Image image1 = new Image(texture);

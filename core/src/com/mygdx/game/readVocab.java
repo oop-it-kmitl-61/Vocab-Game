@@ -13,18 +13,23 @@ public class readVocab {
 		try {
 			DBConnection MyCon = new DBConnection();
 			theConn = MyCon.getConnection();
-			sql = "SELECT * FROM animals";
+			sql = "UPDATE score SET bodies=?";
 			//Try to make your ResultSet scrollable:
 			ps = theConn.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-			resultSet = ps.executeQuery();
-			resultSet.absolute(10); 
+			ps.setInt(1, 10);
+			ps.executeUpdate();
+			//			resultSet = ps.executeQuery();
+//			resultSet.first();
+//			int score =resultSet.getInt("animals");
+//			System.out.println(score);
+//			resultSet.absolute(10); 
 //			while(resultSet.next()) {
-				id= resultSet.getInt(1);
-				word = resultSet.getString(2);
-				meaning = resultSet.getString(3);
-				System.out.printf("%d %s %s\n", id, word, meaning);
+//				id= resultSet.getInt(1);
+//				word = resultSet.getString(2);
+//				meaning = resultSet.getString(3);
+//				System.out.printf("%d %s %s\n", id, word, meaning);
 //			}
-			resultSet.close();
+//			resultSet.close();
 		}catch (Exception e) {
 			// TODO: handle exception
 			System.out.println(e);

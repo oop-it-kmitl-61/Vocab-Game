@@ -44,6 +44,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.mygdx.game.SoundTrack;
 public class Test extends ApplicationAdapter{
 	  private Stage stage;
 	    private static Skin skin;
@@ -52,7 +53,9 @@ public class Test extends ApplicationAdapter{
 	        skin = new Skin(Gdx.files.internal("orange/skin/uiskin.json"));
 	        stage = new Stage(new ScreenViewport());
 	        Gdx.input.setInputProcessor(stage);
-	        
+	        SoundTrack soundTrack = new SoundTrack();
+	        Thread thread = new Thread(soundTrack);
+	        thread.start();
 	        Table rootTable = new Table(skin);
 	        rootTable.setFillParent(true);
 	        stage.addActor(rootTable);

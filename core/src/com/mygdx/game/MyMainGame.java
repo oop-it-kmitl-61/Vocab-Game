@@ -12,6 +12,9 @@ public class MyMainGame extends Game {
 	private static boolean showAnswer;
 	
     public void create () {
+     //   SoundTrack soundTrack = new SoundTrack();
+       // Thread thread = new Thread(soundTrack);
+        //thread.start();
         gameSkin = new Skin(Gdx.files.internal("rainbow/skin/rainbow-ui.json"));
         this.setScreen(new TitleScreen(this));
 
