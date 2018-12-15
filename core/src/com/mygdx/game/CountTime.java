@@ -3,10 +3,11 @@ package com.mygdx.game;
 import javax.swing.JOptionPane;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.mygdx.game.Screens.GuessingWordsScreen;
+import com.mygdx.game.screens.GuessingWordsScreen;
+import com.mygdx.game.screens.OptionScreen;
 
 public class CountTime extends Label implements Runnable{
-	private int second =30,mill=0;
+	private int second =OptionScreen.getTimernum(),mill=0;
 	private String output;
 	private boolean pause, end;
 	public CountTime(CharSequence text, LabelStyle style) {

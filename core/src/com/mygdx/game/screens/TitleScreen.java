@@ -1,4 +1,4 @@
-package com.mygdx.game.Screens;
+package com.mygdx.game.screens;
 
 import javax.swing.JOptionPane;
 
@@ -29,15 +29,19 @@ public class TitleScreen extends PrototypeScreen {
         stage.addActor(image1);
 
         //created button
-        TextButton startButton, exitButton;
+        TextButton startButton, exitButton, optionButton;
 
         startButton = new TextButton("START", MyMainGame.gameSkin);
         startButton.setSize(250,100);
-        startButton.setPosition(120,270);
+        startButton.setPosition(120,300);
 
+        optionButton = new TextButton("OPTION", MyMainGame.gameSkin);
+        optionButton.setSize(250,100);
+        optionButton.setPosition(120,180);
+        
         exitButton = new TextButton("EXIT", MyMainGame.gameSkin);
         exitButton.setSize(250,100);
-        exitButton.setPosition(120,140);
+        exitButton.setPosition(120,60);
 
         //add listener
         startButton.addListener(new InputListener(){
@@ -51,6 +55,17 @@ public class TitleScreen extends PrototypeScreen {
             }
         });
 
+        optionButton.addListener(new InputListener(){
+            @Override
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+                game.setScreen(new OptionScreen(game));
+            }
+            @Override
+            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+                return true;
+            }
+        });
+        
         exitButton.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
@@ -63,6 +78,7 @@ public class TitleScreen extends PrototypeScreen {
         });
 
         stage.addActor(startButton);
+        stage.addActor(optionButton);        
         stage.addActor(exitButton);
     }
 

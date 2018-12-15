@@ -1,6 +1,8 @@
 package com.mygdx.game;
 import java.sql.*;
 import java.util.ArrayList;
+
+import com.mygdx.game.screens.OptionScreen;
 public class ReadVocabs {
 		private static Connection theConn;
 		private static ResultSet resultSet;
@@ -8,7 +10,7 @@ public class ReadVocabs {
         private static ArrayList<Integer> random;
         private static Vocab[] vocab;
 		public static boolean isConnect(String tableName) {
-			vocab = new Vocab[20];
+			vocab = new Vocab[OptionScreen.getWordnum()];
 			random = new ArrayList<Integer>();
 			try {
 			DBConnection MyCon = new DBConnection();
@@ -34,7 +36,7 @@ public class ReadVocabs {
 						id= Integer.parseInt(resultSet.getString("ID"));
 						//random 0-last id-row;
 						randomRow(id);         
-						for(int i=0;i< 20;i++){   
+						for(int i=0;i< OptionScreen.getWordnum();i++){   
 	                    	  // random row from vocab table
 							resultSet.absolute(random.get(i)); 
 							id= Integer.parseInt(resultSet.getString("ID"));
@@ -74,7 +76,7 @@ public class ReadVocabs {
                    if(!random.contains(n)) {
                 	   random.add(n);
                    }
-             }while(random.size() < 20);
+             }while(random.size() < OptionScreen.getWordnum());
          }
 //	public static void main(String[] args) {
 //       for(Vocab vocab: ReadVocabs.getData("bodies")) {
