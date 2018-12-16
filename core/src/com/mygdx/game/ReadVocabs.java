@@ -9,7 +9,10 @@ public class ReadVocabs {
 		private static PreparedStatement ps;
         private static ArrayList<Integer> random;
         private static Vocab[] vocab;
-		public static boolean isConnect(String tableName) {
+        private static String tableName;
+		
+        private static boolean isConnect(String tableName) {
+			ReadVocabs.tableName = tableName;
 			vocab = new Vocab[OptionScreen.getWordnum()];
 			random = new ArrayList<Integer>();
 			try {
@@ -68,7 +71,7 @@ public class ReadVocabs {
                  }
            } 
          
-         public static void randomRow(int lastNum){
+         private static void randomRow(int lastNum){
              int n;
              do{
                   // lastNum is number of words
@@ -79,10 +82,11 @@ public class ReadVocabs {
              }while(random.size() < OptionScreen.getWordnum());
          }
          
-         public static void updateBestScore(String table,int score) {
+         
+         private static void updateBestScore(int score) {
         	DBConnection MyCon = new DBConnection();
  			theConn = MyCon.getConnection();
- 			String sql = "UPDATE score SET "+table+"=?";
+ 			String sql = "UPDATE score SET "+tableName+"=?";
  			
  			//Try to make your ResultSet scrollable:
  			PreparedStatement ps;
@@ -98,13 +102,38 @@ public class ReadVocabs {
 				e.printStackTrace();
 			}
 			
- 			
          }
+         public static int getBestScore() {
+        	int score = 0;
+        	 try {
+     			DBConnection MyCon = new DBConnection();
+     			theConn = MyCon.getConnection();
+     			String sql = "SELECT * FROM score";
+     			//Try to make your ResultSet scrollable:
+     			ps = theConn.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+     			resultSet = ps.executeQuery();
+     			resultSet.first();
+     			score = resultSet.getInt(tableName); 
+     			
+     			theConn.close();
+     			resultSet.close();
+     			ps.close();
+     			
+     	}catch (Exception e) {
+			e.printStackTrace();
+		}
+       return score;
+        	 
+       }
+         
+       public static void isUpdateBestScore(int score) {
+    	   if(getBestScore()<score) {
+    		   updateBestScore(score);
+    	   }
+       }
+         
 //	public static void main(String[] args) {
-//       for(Vocab vocab: ReadVocabs.getData("bodies")) {
-//    	   System.out.println(vocab);
-//       }
-// 
+//       ReadVocabs.getData("bodies");
+//       System.out.println(ReadVocabs.getBestScore());
 //	}
-
 }

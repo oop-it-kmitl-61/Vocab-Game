@@ -3,6 +3,7 @@ package com.mygdx.game;
 import javax.swing.JOptionPane;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.mygdx.game.screens.GuessingWordsScreen;
 import com.mygdx.game.screens.OptionScreen;
 
@@ -10,6 +11,12 @@ public class CountTime extends Label implements Runnable{
 	private int second =OptionScreen.getTimernum(),mill=0;
 	private String output;
 	private boolean pause, end;
+	
+	public CountTime(CharSequence text, Skin skin) {
+		super(text, skin);
+		// TODO Auto-generated constructor stub
+	}
+
 	public CountTime(CharSequence text, LabelStyle style) {
 		super(text, style);
 	}
@@ -31,7 +38,7 @@ public class CountTime extends Label implements Runnable{
 						if(second>0)
 							second--;
 						else {
-							JOptionPane.showMessageDialog(null, "Time Out!!", "Wannig",JOptionPane.WARNING_MESSAGE);
+//							JOptionPane.showMessageDialog(null, "Time Out!!", "Wannig",JOptionPane.WARNING_MESSAGE);
 							GuessingWordsScreen.setTimeOut(true);
 						}
 					}

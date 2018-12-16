@@ -11,6 +11,6 @@ public class RainbowEx {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.width = 500;
 		config.height = 500;
-		new LwjglApplication(new Test(), config);
+		new LwjglApplication(new RainbowExample(), config);
 	}
 }

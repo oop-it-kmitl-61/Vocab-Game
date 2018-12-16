@@ -1,7 +1,9 @@
 package com.mygdx.game.screens;
 
 import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -45,7 +47,7 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.game.SoundTrack;
-public class Test extends ApplicationAdapter{
+public class Test implements ApplicationListener{
 	  private Stage stage;
 	    private static Skin skin;
 	    @Override
@@ -143,7 +145,7 @@ public class Test extends ApplicationAdapter{
 	    public void render() {
 	        Gdx.gl.glClearColor(1.0f, 1.0f, 1.0f, 1);
 	        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
+	        System.out.println(3);
 	        stage.act(Gdx.graphics.getDeltaTime());
 	        stage.draw();
 	    }
@@ -158,5 +160,18 @@ public class Test extends ApplicationAdapter{
 	        stage.dispose();
 	        skin.dispose();
 	    }
+
+		@Override
+		public void pause() {
+			// TODO Auto-generated method stub
+			System.out.println(1);
+			
+		}
+		@Override
+		public void resume() {
+			// TODO Auto-generated method stub
+			System.out.println(2);
+		}
+	
 	    
 }

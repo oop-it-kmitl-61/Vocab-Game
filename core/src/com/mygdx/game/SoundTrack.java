@@ -4,12 +4,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 
 public class SoundTrack implements Runnable{
-	private Music music;
+	private static Music music;
 	
 	
 	public SoundTrack() {
-		music = Gdx.audio.newMusic(Gdx.files.internal("soundtrack.mp3"));
-		music.setVolume(0.1f);
+		music = Gdx.audio.newMusic(Gdx.files.internal("Play Time Happy Instrumental Music for Kids.mp3"));
+		music.setVolume(0.04f);
+		music.setLooping(true);
 	}
 
 	@Override
@@ -18,5 +19,7 @@ public class SoundTrack implements Runnable{
 		
 	}
 	
-	
+	public static void setVolume(float v) {
+		music.setVolume(v);
+	}
 }
