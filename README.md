@@ -37,7 +37,7 @@
 - ไปที่ Vocab-Game-desktop จากนั้นกดที่โฟลเดอร์ของเกมส์ แล้วเลือก DesktopLauncher.java คลิกขวาแล้วเลือก Run As เสร็จแล้วก็เลือก Run Configurations<br>
 <a href=""><img src="img/7.PNG" width="500px"></a>
 - ทำตามขั้นตอนที่ชี้ตามลูกศร คือ 1. กดเลือกที่ Arguments   2. กดเลือก Workspace    3. เลือก Assets ที่ Vocab Game-core  4. กด OK <br>
-<a href=""><img src="img/8.PNG" width="500px"></a>
+<a href=""><img src="img/8.png" width="500px"></a>
 - จากนั้นเข้าไปที่โฟลเดอร์โปรเจค (Vocab-Game) แล้วทำการกด shift + คลิกขวา และคลิก Open PowerShell window here <br>
 <a href=""><img src="img/8.1.PNG" width="500px"></a>
 - พิมพ์คำสั่ง pwd จากนั้นนำค่าที่ได้ไปใส่ใน Program arguments ซึ่งเป็นการระบุที่อยู่ของโปรเจค เพื่อที่จะสามารถเข้าถึงฐานข้อมูลได้ (ไมโครซอฟท์ แอ็คเซส) โดยฐานข้อมูลจะอยู่ที่ Vocab-Game\core\assets\vocab <br>
@@ -71,16 +71,16 @@
 - สามารถเลือกเวลาที่จะทายคำศัพท์ในแต่ละข้อได้ โดยมีให้เลือกตั้งแต่10-30วินาที <br>
 <a href=""><img src="img/22.PNG" width="300px"></a>
 - สามารถเลือกได้ว่าจะทายผิดได้ไม่เกินกี่ข้อในแต่ละหมวด โดยสามารถเลือกได้ตั้งแต่1ถึง5ข้อ <br>
-<a href=""><img src="img/23.PNG" width="300px"></a>
+<a href=""><img src="img/23.PNG" width="350px"></a>
 - สามารถเลือกได้ว่าเราจะดูเฉลยได้เลยหรือเลือกที่จะปิดเฉลยเพื่อหาคำตอบเองก่อนได้ <br>
-<a href=""><img src="img/24.PNG" width="300px"></a>
+<a href=""><img src="img/24.PNG" width="350px"></a>
 - สามารถเลือกได้ว่าจะเปิดเสียงดนตรีขณะเล่นเกมส์หรือไม่ โดยเลือกกดเปิดและปิดจากตัวม้าได้เลย <br>
-<a href=""><img src="img/25.PNG" width="300px"></a>
+<a href=""><img src="img/25.PNG" width="350px"></a>
 - หลังจากตั้งค่าการเล่นเกมส์ทายคำศัพท์ตามที่เราต้องการแล้วให้กด APPLY เพื่อให้มันบันทึกการตั้งค่าของเรา
 จากนั้นจะขึ้นหน้าต่างบอกว่าบันทึกการตั้งค่าสำเร็จดังรูป <br>
-<a href=""><img src="img/26.PNG" width="500px"></a>
+<a href=""><img src="img/26.PNG" width="550px"></a>
 - เราสามารถกด Reset เพื่อกลับไปยังค่าเริ่มต้นของการตั้งค่าตอนติดตั้งเกมส์ได้ <br>
-<a href=""><img src="img/27.PNG" width="300px"></a>
+<a href=""><img src="img/27.PNG" width="350px"></a>
 
 ## ![](/img/group.png)Team Members
 | | รหัสนักศึกษา        | ชื่อ | นามสกุล | githup |
