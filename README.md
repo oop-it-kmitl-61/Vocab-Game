@@ -37,18 +37,18 @@
 - ไปที่ Vocab-Game-desktop จากนั้นกดที่โฟลเดอร์ของเกมส์ แล้วเลือก DesktopLauncher.java คลิกขวาแล้วเลือก Run As เสร็จแล้วก็เลือก Run Configurations<br>
 <a href=""><img src="img/7.PNG" width="500px"></a>
 - ทำตามขั้นตอนที่ชี้ตามลูกศร คือ 1. กดเลือกที่ Arguments   2. กดเลือก Workspace    3. เลือก Assets ที่ Vocab Game-core  4. กด OK <br>
-<a href=""><img src="img/8.png" width="500px"></a>
+<a href=""><img src="img/8.PNG" width="500px"></a>
 - จากนั้นเข้าไปที่โฟลเดอร์โปรเจค (Vocab-Game) แล้วทำการกด shift + คลิกขวา และคลิก Open PowerShell window here <br>
-<a href=""><img src="img/8.1.png" width="500px"></a>
+<a href=""><img src="img/8.1.PNG" width="500px"></a>
 - พิมพ์คำสั่ง pwd จากนั้นนำค่าที่ได้ไปใส่ใน Program arguments ซึ่งเป็นการระบุที่อยู่ของโปรเจค เพื่อที่จะสามารถเข้าถึงฐานข้อมูลได้ (ไมโครซอฟท์ แอ็คเซส) โดยฐานข้อมูลจะอยู่ที่ Vocab-Game\core\assets\vocab <br>
-<a href=""><img src="img/8.2.png" width="500px"></a>
+<a href=""><img src="img/8.2.PNG" width="500px"></a>
 - จากนั้นกดเลือก Properties ที่ Vocab Game-core <br>
 <a href=""><img src="img/9.PNG" width="500px"></a>
 - จะได้หน้าต่างดังรูปแล้วคลิกที่ Java Build Path เสร็จแล้วเลือก Add External JARs จากนั้นกด Apply and Close <br>
 <a href=""><img src="img/10.PNG" width="500px"></a>
-- จะขึ้นหน้าต่างดังรูปจากนั้นให้เรากด Open ไฟล์ทั้งหมดในโฟล์เดอร์ <br>
+- จะขึ้นหน้าต่างดังรูปจากนั้นให้เรากด Open ไฟล์ทั้งหมดในโฟล์เดอร์<br>
 <a href=""><img src="img/11.PNG" width="500px"></a>
--ทำตามขั้นตอนเดิมที่โฟลเดอร์ Vocab-Game-desktop (เพื่อ add library) จากนั้นจึงสามารถเปิดเกมส์ได้ <br>
+- ทำตามขั้นตอนเดิมที่โฟลเดอร์ Vocab-Game-desktop (เพื่อ add library) จากนั้นจึงสามารถเปิดเกมส์ได้ <br>
 <a href=""><img src="img/12.PNG" width="500px"></a>
 - เมื่อกด Java Application แล้วจะปรากฏหน้าต่างเกมส์ขึ้นมาดังรูป จากนั้นคลิกที่ปุ่ม Start เพื่อเริ่มเกมส์หรือปุ่ม Exit เพื่อออกจากเกมส์ <br>
 <a href=""><img src="img/13.PNG" width="400px"></a>
