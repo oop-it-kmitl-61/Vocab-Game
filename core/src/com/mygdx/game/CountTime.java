@@ -1,7 +1,5 @@
 package com.mygdx.game;
 
-import javax.swing.JOptionPane;
-
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.mygdx.game.screens.GuessingWordsScreen;
@@ -38,7 +36,6 @@ public class CountTime extends Label implements Runnable{
 						if(second>0)
 							second--;
 						else {
-//							JOptionPane.showMessageDialog(null, "Time Out!!", "Wannig",JOptionPane.WARNING_MESSAGE);
 							GuessingWordsScreen.setTimeOut(true);
 						}
 					}

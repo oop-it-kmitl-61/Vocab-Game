@@ -45,7 +45,6 @@ public class ReadVocabs {
 							id= Integer.parseInt(resultSet.getString("ID"));
 							word = resultSet.getString("words");
 							meaning = resultSet.getString("meaning");
-							     System.out.println("id: "+id +" "+word+" "+ meaning);
 							vocab[i] = new Vocab(id, word, meaning);
 		
 	                 }
@@ -132,8 +131,4 @@ public class ReadVocabs {
     	   }
        }
          
-//	public static void main(String[] args) {
-//       ReadVocabs.getData("bodies");
-//       System.out.println(ReadVocabs.getBestScore());
-//	}
 }

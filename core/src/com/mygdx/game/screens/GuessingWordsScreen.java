@@ -3,7 +3,6 @@ package com.mygdx.game.screens;
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -12,15 +11,11 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton.ImageButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
@@ -31,12 +26,9 @@ import com.mygdx.game.ReadVocabs;
 import com.mygdx.game.TextToSpeech;
 import com.mygdx.game.Vocab;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 
 
-public class GuessingWordsScreen implements Screen, InputProcessor{
-    private Stage stage;
-    private Game game;
+public class GuessingWordsScreen extends PrototypeScreen{
     private ShapeRenderer shapeRenderer;
     private InputMultiplexer inputMultiplexer;
     private int index, score;
@@ -59,19 +51,6 @@ public class GuessingWordsScreen implements Screen, InputProcessor{
         int col_width = Gdx.graphics.getWidth() / 12;
         orangeSkin= new Skin(Gdx.files.internal("orange/skin/extras/skin-composer-dark/dark-peel-ui.json"));
         
-        //background
-//        Texture texture = new Texture(Gdx.files.internal("img/animal.jpg"));
-//        Image image1 = new Image(texture);
-//        image1.setPosition(0,0);
-//        image1.setSize(500,500);
-//        stage.addActor(image1);
-        
-        
-        Table table = new Table(orangeSkin);
-//        rootTable.setFillParent(true);
-//        rootTable.row();
-        
-        ImageButtonStyle style ;
         //tell ReadVocab what table should be read and return vocab
         allVocabs = ReadVocabs.getData(tableName);
         
@@ -93,7 +72,7 @@ public class GuessingWordsScreen implements Screen, InputProcessor{
         falseLabel.setSize(Gdx.graphics.getWidth()/4,row_height*1.2f);
         falseLabel.setPosition(2, 435);
         
-        //time lable
+        //time label
         timeLable = new CountTime("", MyMainGame.gameSkin);
         timeLable.setSize(Gdx.graphics.getWidth()/4,row_height*1.2f);
         timeLable.setPosition(420, 450);
@@ -111,40 +90,28 @@ public class GuessingWordsScreen implements Screen, InputProcessor{
         label1.setPosition(250,340);
         label1.setAlignment(Align.center);
 
-        //speak button
-//        style = new ImageButtonStyle(orangeSkin.get("menu-center", ImageButtonStyle.class));
-//        style.imageUp = orangeSkin.getDrawable("image-sound");
-//        style.imageChecked = orangeSkin.getDrawable("image-sound");
-//        style.imageDown = orangeSkin.getDrawable("image-sound-down");
-//        ImageButton  speakButton= new ImageButton(style);
-//        table.add(speakButton).padBottom(700f).padLeft(150f);
-//        table.setPosition(50,Gdx.graphics.getHeight()-row_height*4.3f);
-//        table.add(table).colspan(10).growX();;
-//        table.setPosition(50,Gdx.graphics.getHeight()-row_height*4.2f);
-        
         ImageButton speakButton = new ImageButton(orangeSkin);
         speakButton.setSize(col_width*1.2f,(float)(row_height*1.2f));
         speakButton.getStyle().imageUp = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("orange/raw/image-sound.png"))));
         speakButton.getStyle().imageDown = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("orange/raw/image-sound.png"))));
-        speakButton.setPosition(20,Gdx.graphics.getHeight()-row_height*4.3f);
+        speakButton.setPosition(5,Gdx.graphics.getHeight()-row_height*4.3f);
         
    
         vocab1 = new Label(choiceVocabs.get(randomNumber.get(0)).getMeaning(), label1Style);
-        vocab1.setSize(Gdx.graphics.getWidth()/4,row_height*1.2f);
-        vocab1.setPosition(45,175);
-//        vocab1.getStyle().background = new Image(new Texture(labelColor)).getDrawable();
+        vocab1.setSize(Gdx.graphics.getWidth()/3f,row_height*1.2f);
+        vocab1.setPosition(30,175);
         
         vocab2 = new Label(choiceVocabs.get(randomNumber.get(1)).getMeaning(), label1Style);
         vocab2.setSize(Gdx.graphics.getWidth()/4,row_height*1.2f);
-        vocab2.setPosition(270,175);
+        vocab2.setPosition(260,175);
 
         vocab3 = new Label(choiceVocabs.get(randomNumber.get(2)).getMeaning(), label1Style);
-        vocab3.setSize(Gdx.graphics.getWidth()/4,row_height*1.2f);
-        vocab3.setPosition(45,80);
+        vocab3.setSize(Gdx.graphics.getWidth()/3f,row_height*1.2f);
+        vocab3.setPosition(30,80);
 
         vocab4 = new Label(choiceVocabs.get(randomNumber.get(3)).getMeaning(), label1Style);
         vocab4.setSize(Gdx.graphics.getWidth()/4,row_height*1.2f);
-        vocab4.setPosition(270,80);
+        vocab4.setPosition(260,80);
 
          //add listener
         vocab1.addListener(new InputListener(){
@@ -155,10 +122,8 @@ public class GuessingWordsScreen implements Screen, InputProcessor{
             	timeLable.setPause(true);
             	if(choiceVocabs.get(randomNumber.get(0)).getWord().equals(rightVocab.getWord())) {
             		score++;
-//            		JOptionPane.showMessageDialog(null, "Correct!!", "Result",  JOptionPane.INFORMATION_MESSAGE);
             		popUp("Correct");
             	}else {
-//            		JOptionPane.showMessageDialog(null, "Wrong!!", "Result",JOptionPane.WARNING_MESSAGE);
             		popUp("Wrong");
             		falseCount++;
             		falseAnswer.add(rightVocab);
@@ -190,10 +155,8 @@ public class GuessingWordsScreen implements Screen, InputProcessor{
               	if(choiceVocabs.get(randomNumber.get(1)).getWord().equals(rightVocab.getWord())) {
               		score++;
               		popUp("Correct");
-//            		JOptionPane.showMessageDialog(null, "Correct!!", "Result",  JOptionPane.INFORMATION_MESSAGE);
             	}else {
             		popUp("Wrong");
-//            		JOptionPane.showMessageDialog(null, "Wrong!!", "Result",JOptionPane.WARNING_MESSAGE);
             		falseCount++;
             		falseAnswer.add(rightVocab);
             	}
@@ -223,10 +186,8 @@ public class GuessingWordsScreen implements Screen, InputProcessor{
             	if(choiceVocabs.get(randomNumber.get(2)).getWord().equals(rightVocab.getWord())) {
             		score++;
             		popUp("Correct");
-//            		JOptionPane.showMessageDialog(null, "Correct!!", "Result",  JOptionPane.INFORMATION_MESSAGE);
             	}else {
             		popUp("Wrong");
-//            		JOptionPane.showMessageDialog(null, "Wrong!!", "Result",JOptionPane.WARNING_MESSAGE);
             		falseCount++;
             		falseAnswer.add(rightVocab);
             	}
@@ -256,10 +217,8 @@ public class GuessingWordsScreen implements Screen, InputProcessor{
             	if(choiceVocabs.get(randomNumber.get(3)).getWord().equals(rightVocab.getWord())) {
             		score++;
             		popUp("Correct");
-//            		JOptionPane.showMessageDialog(null, "Correct!!", "Result",  JOptionPane.INFORMATION_MESSAGE);
             	}else {
             		popUp("Wrong");
-//            		JOptionPane.showMessageDialog(null, "Wrong!!", "Result",JOptionPane.WARNING_MESSAGE);
             		falseCount++;
             		falseAnswer.add(rightVocab);
             	}
@@ -345,7 +304,6 @@ public class GuessingWordsScreen implements Screen, InputProcessor{
         		 vocab4.setStyle(label1Style);
         	}
         });
-//        stage.addActor(table);
         stage.addActor(speakButton);
         stage.addActor(timeLable);
         stage.addActor(falseLabel);
@@ -356,15 +314,11 @@ public class GuessingWordsScreen implements Screen, InputProcessor{
         stage.addActor(vocab4);
 
         shapeRenderer = new ShapeRenderer();
-
-
     }
     public void create () {
 
 
     }
-
-
 
     @Override
     public void show() {
@@ -381,25 +335,10 @@ public class GuessingWordsScreen implements Screen, InputProcessor{
         shapeRenderer.setColor(Color.valueOf("#fff3c1"));
         shapeRenderer.rect(0,0,500,500);
         
-        
-        //background vocab
+        //background button vocab
         shapeRenderer.setColor(Color.valueOf("#84ceed"));
         shapeRenderer.rect(0,0,500,250);
-        //div1
-//        shapeRenderer.setColor(Color.WHITE);
-//        shapeRenderer.rect(40,170,170,60);
-        //div2
-//        shapeRenderer.setColor(Color.WHITE);
-//        shapeRenderer.rect(290,170,170,60);
-        //div3
-//        shapeRenderer.setColor(Color.WHITE);
-//        shapeRenderer.rect(40,70,170,60);
-        //div4
-//        shapeRenderer.setColor(Color.WHITE);
-//        shapeRenderer.rect(290,70,170,60);
         shapeRenderer.end();
-//        
-
         stage.act();
         stage.draw();
         
@@ -407,7 +346,7 @@ public class GuessingWordsScreen implements Screen, InputProcessor{
     	if(GuessingWordsScreen.timeOut) {
     		timeLable.setPause(true);
     		GuessingWordsScreen.timeOut = false;
-    		 //popup
+    		 //pop up
             Window window = new Window("Inform", MyMainGame.gameSkin);
 	        window.setSize(300f, 150.0f);
 	        window.setPosition(110, 220);
@@ -572,17 +511,13 @@ public class GuessingWordsScreen implements Screen, InputProcessor{
         	//prevent add the same word
         	if(!choiceVocabs.contains(allVocabs[(r)])) {
         		choiceVocabs.add(allVocabs[(r)]);        	
-        		System.out.println("choic "+allVocabs[(r)]);
         	}
         }while(choiceVocabs.size()<4);
-        System.out.println("===============================");
-       System.out.println("riht "+rightVocab);
         do {
         	//random 0-3
         	int n = (int) (Math.random()*4);
         	if(!randomNumber.contains(n)) {
         		randomNumber.add(n);
-        		System.out.println("randomnum "+ n);
         	}
         }while(randomNumber.size()<4);
         index++;
@@ -602,11 +537,11 @@ public class GuessingWordsScreen implements Screen, InputProcessor{
         	//update best score
         	ReadVocabs.isUpdateBestScore(score);
         	int bestScore = ReadVocabs.getBestScore();
-        	
+        	// kill time thread 
+        	timeLable.setEnd(true);
         	if(index ==OptionScreen.getWordnum() && falseCount==0) {
-        		timeLable.setPause(true);
+        		
         		popUpEndGame("You Win\nYour score: "+score+" Best score: "+bestScore);
-//        		JOptionPane.showMessageDialog(null, "            You win!!\nYour score: "+score+" Best score: "+bestScore, "Result",  JOptionPane.INFORMATION_MESSAGE);
         	}else if(falseCount !=0 && falseCount!=OptionScreen.getFalseWordnum()) {
         		if(OptionScreen.isShowAnswer()) {
 	        		String text = "";
@@ -618,13 +553,10 @@ public class GuessingWordsScreen implements Screen, InputProcessor{
 	    	        	}
 	    	        }
 	    	        popUpEndGame("You Win\n"+"Your score: "+score+"\nBest score: "+bestScore+"\n"+text);
-//	    	        JOptionPane.showMessageDialog(null, "            You Win!!\n"+"Your score: "+score+"\nBest score: "+bestScore+"\n"+text, "Result", JOptionPane.WARNING_MESSAGE);
         		}
         		//in case of don't want to show the answer
         		else
         			popUpEndGame("You Win"+"\nYour score: "+score+"\nBest score: "+bestScore);
-//        			JOptionPane.showMessageDialog(null, "            You win!!"+"\nYour score: "+score+"\nBest score: "+bestScore, "Result",  JOptionPane.INFORMATION_MESSAGE);
-    	        timeLable.setPause(true);
         	}
         	else {
         		if(OptionScreen.isShowAnswer()) {
@@ -636,12 +568,9 @@ public class GuessingWordsScreen implements Screen, InputProcessor{
 	    	        		text += falseAnswer.get(i).getWord()+"    "+ falseAnswer.get(i).getMeaning()+"\n";
 	    	        	}
 	    	        }
-	    	        timeLable.setPause(true);
 	    	        popUpEndGame("You Fail"+"\nYour score: "+score+"\nBest score: "+bestScore+"\n"+text);
-//	        		JOptionPane.showMessageDialog(null, "            You fail!!"+"\nYour score: "+score+"\nBest score: "+bestScore+"\n"+text, "Result", JOptionPane.WARNING_MESSAGE);
         		}//don't want to show answer 
         		else {
-//        			JOptionPane.showMessageDialog(null, "            You fail!!\n"+"Your score: "+score+"\nBest score: "+bestScore, "Result", JOptionPane.WARNING_MESSAGE);
         			popUpEndGame("You Fail\n"+"Your score: "+score+"\nBest score: "+bestScore);
         		}
         	}
@@ -649,7 +578,7 @@ public class GuessingWordsScreen implements Screen, InputProcessor{
 	}
 	
 	public void popUp(String text) {
-		 //popup
+		 //pop up
         Window window = new Window("Result", MyMainGame.gameSkin);
         window.setSize(300f, 150.0f);
         window.setPosition(110, 220);
@@ -677,8 +606,7 @@ public class GuessingWordsScreen implements Screen, InputProcessor{
 	
 	
 	public void popUpEndGame(String text) {
-		timeLable.setEnd(true);
-		 //popup
+		 //pop up end game
         Window window = new Window("Result", MyMainGame.gameSkin);
         window.setSize(500f, 490.0f);       
         window.getTitleLabel().setAlignment(Align.center);

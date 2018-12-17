@@ -6,12 +6,19 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.mygdx.game.screens.TitleScreen;
 
 public class MyMainGame extends Game {
+	// using for keep state of option
 	private static boolean optionState;
     static public Skin gameSkin;
 	private static int wordnum, timernum, falseWordnum;
 	private static boolean showAnswer;
 	
-    public void create () {
+	public MyMainGame() {}
+	
+    public MyMainGame(String DBpath) {
+		DBConnection.setDBPath(DBpath);
+	}
+
+	public void create () {
         SoundTrack soundTrack = new SoundTrack();
         Thread thread = new Thread(soundTrack);
         thread.start();

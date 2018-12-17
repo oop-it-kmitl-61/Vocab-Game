@@ -22,7 +22,7 @@ import com.mygdx.game.MyMainGame;
 import com.mygdx.game.SoundTrack;
 public class OptionScreen extends PrototypeScreen{
 	private static int wordnum=20, timernum=30, falseWordnum=5;
-	private static boolean showAnswer=true;
+	private static boolean showAnswer=true, isApply;
 	
 	
     public OptionScreen(Game aGame) {
@@ -127,6 +127,7 @@ public class OptionScreen extends PrototypeScreen{
             applyButton.addListener(new InputListener(){
                 @Override
                 public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+                	isApply = true;
                     wordnum = wordselectBox.getSelected();
                     timernum = timerselectBox.getSelected();
                     falseWordnum = falseselectBox.getSelected();
@@ -135,8 +136,6 @@ public class OptionScreen extends PrototypeScreen{
                     }else {
                     	showAnswer = false;
                     }
-                    System.out.printf("%d %d %d\n", wordnum, timernum, falseWordnum);
-                    System.out.println(showAnswer);
                     
                     SoundTrack.setVolume(slider.getValue());
                    	MyMainGame.setOption(wordnum, timernum, falseWordnum, showAnswer);
@@ -218,6 +217,9 @@ public class OptionScreen extends PrototypeScreen{
             backButton.addListener(new InputListener(){
                 @Override
                 public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+                	if(!isApply) {
+                		slider.setValue(0.04f);
+                	}
                     game.setScreen(new TitleScreen(game));
                 }
                 @Override
