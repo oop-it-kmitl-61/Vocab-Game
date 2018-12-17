@@ -81,6 +81,8 @@
 <a href=""><img src="img/26.PNG" width="600px"></a>
 - เราสามารถกด Reset เพื่อกลับไปยังค่าเริ่มต้นของการตั้งค่าตอนติดตั้งเกมส์ได้ <br>
 <a href=""><img src="img/27.PNG" width="400px"></a>
+- ทุกๆหน้า สามารถกดปุ่ม Esc เพื่อออกได้ <br>
+<a href=""><img src="img/28.png" width="300px"></a>
 
 ## ![](/img/group.png)Team Members
 | | รหัสนักศึกษา        | ชื่อ | นามสกุล | githup |
