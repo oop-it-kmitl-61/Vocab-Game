@@ -33,7 +33,6 @@
  <a href=""><img src="img/4.PNG" width="500px"></a>
 - กดเลือก Existing Gradle Project ตามด้วยปุ่ม Next<br>
  <a href=""><img src="img/5.PNG" width="500px"></a>
-<br>
  <a href=""><img src="img/6.PNG" width="500px"></a>
 - วิธี How to run and add library กดที่โฟลเดอร์ของเกมส์ แล้วเลือก DesktopLauncher.java คลิกขวาแล้วเลือก Run As เสร็จแล้วก็เลือก Run Configurations<br>
 <a href=""><img src="img/7.PNG" width="500px"></a>
@@ -69,6 +68,7 @@
 <a href=""><img src="img/22.PNG" width="500px"></a>
 - สามารถเลือกได้ว่าจะเปิดเสียงดนตรีขณะเล่นเกมส์หรือไม่ โดยเลือกกดเปิดและปิดจากตัวม้าได้เลย <br>
 <a href=""><img src="img/23.PNG" width="500px"></a>
+
 ## ![](/img/collaboration.png)Team Members
 | | รหัสนักศึกษา        | ชื่อ | นามสกุล | githup |
 |:-:| :-------------: |:----------:|:--------:|:--------:|
