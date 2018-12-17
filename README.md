@@ -73,9 +73,9 @@
 <a href=""><img src="img/25.PNG" width="300px"></a>
 - หลังจากตั้งค่าการเล่นเกมส์ทายคำศัพท์ตามที่เราต้องการแล้วให้กด APPLY เพื่อให้มันบันทึกการตั้งค่าของเรา
 จากนั้นจะขึ้นหน้าต่างบอกว่าบันทึกการตั้งค่าสำเร็จดังรูป <br>
-<a href=""><img src="img/26.PNG" width="300px"></a>
+<a href=""><img src="img/26.PNG" width="500px"></a>
 - เราสามารถกด Reset เพื่อกลับไปยังค่าเริ่มต้นของการตั้งค่าตอนติดตั้งเกมส์ได้ <br>
-<a href=""><img src="img/27.PNG" width="500px"></a>
+<a href=""><img src="img/27.PNG" width="300px"></a>
 
 ## ![](/img/collaboration.png)Team Members
 | | รหัสนักศึกษา        | ชื่อ | นามสกุล | githup |
