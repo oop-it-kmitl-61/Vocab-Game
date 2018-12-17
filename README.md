@@ -1,4 +1,4 @@
-#:computer: How to Run .jar
+# How to Run .jar
 ```ruby
 cd Vocab-Game\core\assets
 java -jar VocabGame.jar path
