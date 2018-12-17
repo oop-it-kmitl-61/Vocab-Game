@@ -1,3 +1,14 @@
+# How to Run .jar
+```ruby
+cd Vocab-Game\core\assets
+java -jar VocabGame.jar path
+```
+เช่น
+```ruby
+cd C:\Project\Vocab-Game\core\assets
+java -jar VocabGame.jar C:\Project\Vocab-Game
+```
+
 # ![](/img/gamepad.png)Vocab-Game เกมส์ทายความหมายศัพท์ภาษาอังกฤษ
 
 ## ![](/img/home.png)คำอธิบายโปรเจค
