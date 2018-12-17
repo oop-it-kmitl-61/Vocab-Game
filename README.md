@@ -15,7 +15,7 @@
 3.	ผู้เล่นกระตือรือร้นในการเรียนรู้ทางด้านภาษาอังกฤษ
 
 ## ขอบเขต และข้อจำกัดของโปรแกรมที่จะพัฒนา
-1.	1.	ผู้เล่นสามารถเลือกได้ว่าจะตอบผิดกี่ครั้ง โดยมีให้เลือกไม่เกิน 1 - 5 ครั้ง ก่อนจะบังคับจบเกมส์
+1.	ผู้เล่นสามารถเลือกได้ว่าจะตอบผิดกี่ครั้ง โดยมีให้เลือกไม่เกิน 1 - 5 ครั้ง ก่อนจะบังคับจบเกมส์
 2.	สามารถนำไปใช้เป็นสื่อการสอนในระดับประถมศึกษา มัธยมศึกษาได้ หรือผู้ที่สนใจ
 3.	สามารถเล่นได้ 1 คน ต่อเกม
 4.	ผู้เล่นสามารถเลือกตอบได้จากตัวเลือกทั้ง 4 ตัวเลือก
@@ -29,22 +29,26 @@
 
 ## ![](/img/story.png)Storyboard
 ขั้นตอนการเปิดเกมส์มีดังนี้
-- กด Import หลังจาก Clone จาก Git เสร็จ<br> 
+- กด Import หลังจาก Clone จาก Git เสร็จ (เปิดโดยใช้ Eclipse)<br> 
  <a href=""><img src="img/4.PNG" width="500px"></a>
 - กดเลือก Existing Gradle Project ตามด้วยปุ่ม Next<br>
  <a href=""><img src="img/5.PNG" width="500px"></a>
  <a href=""><img src="img/6.PNG" width="500px"></a>
-- วิธี How to run and add library กดที่โฟลเดอร์ของเกมส์ แล้วเลือก DesktopLauncher.java คลิกขวาแล้วเลือก Run As เสร็จแล้วก็เลือก Run Configurations<br>
+- ไปที่ Vocab-Game-desktop จากนั้นกดที่โฟลเดอร์ของเกมส์ แล้วเลือก DesktopLauncher.java คลิกขวาแล้วเลือก Run As เสร็จแล้วก็เลือก Run Configurations<br>
 <a href=""><img src="img/7.PNG" width="500px"></a>
-- ทำตามขั้นตอนที่ชี้ตามลูกศร คือ 1. กดเลือกที่ Arguments   2. กดเลือก Workspace    3. เลือก Assets 4. กด OK 5. ใส่ path โฟลเดอร์ของเกมใน Program Argument <br>
+- ทำตามขั้นตอนที่ชี้ตามลูกศร คือ 1. กดเลือกที่ Arguments   2. กดเลือก Workspace    3. เลือก Assets ที่ Vocab Game-core  4. กด OK <br>
 <a href=""><img src="img/8.png" width="500px"></a>
-- จากนั้นกดเลือก Properties <br>
+- จากนั้นเข้าไปที่โฟลเดอร์โปรเจค (Vocab-Game) แล้วทำการกด shift + คลิกขวา และคลิก Open PowerShell window here <br>
+<a href=""><img src="img/8.1.png" width="500px"></a>
+- พิมพ์คำสั่ง pwd จากนั้นนำค่าที่ได้ไปใส่ใน Program arguments ซึ่งเป็นการระบุที่อยู่ของโปรเจค เพื่อที่จะสามารถเข้าถึงฐานข้อมูลได้ (ไมโครซอฟท์ แอ็คเซส) โดยฐานข้อมูลจะอยู่ที่ Vocab-Game\core\assets\vocab <br>
+<a href=""><img src="img/8.2.png" width="500px"></a>
+- จากนั้นกดเลือก Properties ที่ Vocab Game-core <br>
 <a href=""><img src="img/9.PNG" width="500px"></a>
 - จะได้หน้าต่างดังรูปแล้วคลิกที่ Java Build Path เสร็จแล้วเลือก Add External JARs จากนั้นกด Apply and Close <br>
 <a href=""><img src="img/10.PNG" width="500px"></a>
 - จะขึ้นหน้าต่างดังรูปจากนั้นให้เรากด Open ไฟล์ทั้งหมดในโฟล์เดอร์ <br>
 <a href=""><img src="img/11.PNG" width="500px"></a>
-- ทำตามขั้นตอนเดิมที่โฟลเดอร์ Vocab-Game-desktop เพื่อเล่นเกมส์ <br>
+-ทำตามขั้นตอนเดิมที่โฟลเดอร์ Vocab-Game-desktop (เพื่อ add library) จากนั้นจึงสามารถเปิดเกมส์ได้ <br>
 <a href=""><img src="img/12.PNG" width="500px"></a>
 - เมื่อกด Java Application แล้วจะปรากฏหน้าต่างเกมส์ขึ้นมาดังรูป จากนั้นคลิกที่ปุ่ม Start เพื่อเริ่มเกมส์หรือปุ่ม Exit เพื่อออกจากเกมส์ <br>
 <a href=""><img src="img/13.PNG" width="400px"></a>
