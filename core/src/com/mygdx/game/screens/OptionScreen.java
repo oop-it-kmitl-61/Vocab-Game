@@ -38,7 +38,7 @@ public class OptionScreen extends PrototypeScreen{
             	wordnum = MyMainGame.getWordnum();
             	timernum = MyMainGame.getTimernum();
             	falseWordnum = MyMainGame.getFalseWordnum();
-            	showAnswer = MyMainGame.isOptionState();
+            	showAnswer = MyMainGame.isShowAnswer();
             }
             
             
@@ -65,8 +65,6 @@ public class OptionScreen extends PrototypeScreen{
             Label soundlabel = new Label("Volume.", label1Style);
             soundlabel.setPosition(30, 70);
             
-//            wordlabel.setFontScale(1.5f, 1.5f);
-//            ImageTextButton wordTextButton = new ImageTextButton("Number of \n Words", MyMainGame.gameSkin, "");
             SelectBox<Integer> wordselectBox = new SelectBox<>(MyMainGame.gameSkin);
             wordselectBox.setItems(10,15, 20,25, 30,35, 40);
             wordselectBox.setSelected(wordnum);;
@@ -93,11 +91,7 @@ public class OptionScreen extends PrototypeScreen{
 	        	answerselectBox.setSelectedIndex(1);
 	        answerselectBox.setSize(170, 80);
 	        answerselectBox.setPosition(310,150);
-//	        Label timerlabel = new Label("Timer", MyMainGame.gameSkin);
-//            wordlabel.setPosition(70, 310);
-//            wordlabel.setFontScale(1.5f, 1.5f);
-//	        
-	        
+
 	        //setting volume
 	        final Slider slider = new Slider(0, 1, 0.01f, false, MyMainGame.gameSkin);
 	        slider.setValue(0.04f);
