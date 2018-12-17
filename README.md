@@ -36,7 +36,7 @@
 - วิธี How to run and add library กดที่โฟลเดอร์ของเกมส์ แล้วเลือก DesktopLauncher.java คลิกขวาแล้วเลือก Run As เสร็จแล้วก็เลือก Run Configurations<br>
 <a href=""><img src="img/7.PNG" width="500px"></a>
 - ทำตามขั้นตอนที่ชี้ตามลูกศร คือ 1. กดเลือกที่ Arguments   2. กดเลือก Workspace    3. เลือก Assets 4. กด OK 5. ใส่ path โฟลเดอร์ของเกมใน Program Argument <br>
-<a href=""><img src="img/8.PNG" width="500px"></a>
+<a href=""><img src="img/8.png" width="500px"></a>
 - จากนั้นกดเลือก Properties <br>
 <a href=""><img src="img/9.PNG" width="500px"></a>
 - จะได้หน้าต่างดังรูปแล้วคลิกที่ Java Build Path เสร็จแล้วเลือก Add External JARs จากนั้นกด Apply and Close <br>
