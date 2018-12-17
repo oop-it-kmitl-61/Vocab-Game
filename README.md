@@ -30,9 +30,45 @@
 ## Storyboard
 ขั้นตอนการเปิดเกมส์มีดังนี้
 - กด Import หลังจาก Clone จาก Git เสร็จ<br> 
- <a href=""><img src="img/4.png" width="200px"></a>
-
-
+ <a href=""><img src="img/4.PNG" width="500px"></a>
+- กดเลือก Existing Gradle Project ตามด้วยปุ่ม Next<br>
+ <a href=""><img src="img/5.PNG" width="500px"></a>
+<br>
+ <a href=""><img src="img/6.PNG" width="500px"></a>
+- วิธี How to run and add library กดที่โฟลเดอร์ของเกมส์ แล้วเลือก DesktopLauncher.java คลิกขวาแล้วเลือก Run As เสร็จแล้วก็เลือก Run Configurations<br>
+<a href=""><img src="img/7.PNG" width="500px"></a>
+- ทำตามขั้นตอนที่ชี้ตามลูกศร คือ 1. กดเลือกที่ Arguments   2. กดเลือก Workspace    3. เลือก Assets และ 4. กด OK <br>
+<a href=""><img src="img/8.PNG" width="500px"></a>
+- จากนั้นกดเลือก Properties <br>
+<a href=""><img src="img/9.PNG" width="500px"></a>
+- จะได้หน้าต่างดังรูปแล้วคลิกที่ Java Build Path เสร็จแล้วเลือก Add External JARs จากนั้นกด Apply and Close <br>
+<a href=""><img src="img/10.PNG" width="500px"></a>
+- จะขึ้นหน้าต่างดังรูปจากนั้นให้เรากด Open ไฟล์ทั้งหมดในโฟล์เดอร์ <br>
+<a href=""><img src="img/11.PNG" width="500px"></a>
+- ทำตามขั้นตอนเดิมที่โฟลเดอร์ Vocab-Game-desktop เพื่อเล่นเกมส์ <br>
+<a href=""><img src="img/12.PNG" width="500px"></a>
+- เมื่อกด Java Application แล้วจะปรากฏหน้าต่างเกมส์ขึ้นมาดังรูป จากนั้นคลิกที่ปุ่ม Start เพื่อเริ่มเกมส์หรือปุ่ม Exit เพื่อออกจากเกมส์ <br>
+<a href=""><img src="img/13.PNG" width="500px"></a>
+- หลังจากกด Start มาแล้วจะมีหมวดหมู่คำศัพท์ให้เราเลือกเล่น ให้เราเลือกหมวดใดหมวดหนึ่งเพื่อเล่นเกมส์ <br>
+<a href=""><img src="img/14.PNG" width="500px"></a>
+- เมื่อเลือกหมวดคำศัพท์ที่จะเล่นแล้ว จะปรากฏหน้าต่างดังรูป ให้เรากดเลือกคำศัพท์ที่ถูกต้องได้เลย <br>
+<a href=""><img src="img/15.PNG" width="500px"></a>
+- ถ้าตอบถูกจะขึ้นหน้าต่างแสดงว่า Correct ให้เรากด OK เพื่อไปข้อต่อไป <br>
+<a href=""><img src="img/16.PNG" width="500px"></a>
+- ถ้าตอบผิดจะขึ้น Wrong ให้กด OK เพื่อเล่นข้อถัดไป <br>
+<a href=""><img src="img/17.PNG" width="500px"></a>
+- ถ้าเราตอบผิดเกิน 5 ข้อเกมส์จะจบทันที พร้อมเฉลยข้อที่เราทายผิดเราสามมารถเลือกกดเกมส์เพื่อเล่นอีกครั้งหรือกดออกจากเกมส์เมื่อเลิกเล่นแล้ว <br>
+<a href=""><img src="img/18.PNG" width="500px"></a>
+- สามารถเลือกได้ว่าจะทายคำศัพท์กี่ข้อในแต่ละหมวด โดยมีให้เลือกตั้งแต่10ถึง40ข้อ<br>
+<a href=""><img src="img/19.PNG" width="500px"></a>
+- สามารถเลือกเวลาที่จะทายคำศัพท์ในแต่ละข้อได้ โดยมีให้เลือกตั้งแต่10-30วินาที <br>
+<a href=""><img src="img/20.PNG" width="500px"></a>
+- สามารถเลือกได้ว่าจะทายผิดได้ไม่เกินกี่ข้อในแต่ละหมวด โดยสามารถเลือกได้ตั้งแต่1ถึง5ข้อ <br>
+<a href=""><img src="img/21.PNG" width="500px"></a>
+- สามารถเลือกได้ว่าเราจะดูเฉลยได้เลยหรือเลือกที่จะปิดเฉลยเพื่อหาคำตอบเองก่อนได้ <br>
+<a href=""><img src="img/22.PNG" width="500px"></a>
+- สามารถเลือกได้ว่าจะเปิดเสียงดนตรีขณะเล่นเกมส์หรือไม่ โดยเลือกกดเปิดและปิดจากตัวม้าได้เลย <br>
+<a href=""><img src="img/23.PNG" width="500px"></a>
 ## ![](/img/collaboration.png)Team Members
 | | รหัสนักศึกษา        | ชื่อ | นามสกุล | githup |
 |:-:| :-------------: |:----------:|:--------:|:--------:|
