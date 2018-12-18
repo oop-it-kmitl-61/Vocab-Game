@@ -36,7 +36,7 @@ public class TextToSpeech implements Runnable{
 	}
 	@Override
 	public void run() {
-		// i used for give some job for thread to do that all not thing special
+		
 		for(;;) {
 			if(end) {
 				break;
